@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ohio.unity
     guid: 12cb0ac36a379447399bf7a5c3da994c
+  - enabled: 1
+    path: Assets/Scenes/California.unity
+    guid: 39593d2f68c0c4b4e8cfce07c3970346
   m_configObjects: {}

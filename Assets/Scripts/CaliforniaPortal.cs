@@ -8,26 +8,30 @@ public class CaliforniaPortal : MonoBehaviour
     public GameObject player;
     public string newGameScene;
 
-    private bool isActive;
     // Start is called before the first frame update
     void Start()
     {
-        isActive = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float playerX = player.transform.position.x;
-        float playerZ = player.transform.position.z;
-        float portalX = transform.position.x;
-        float portalZ = transform.position.z;
-
-        float distance = Mathf.Sqrt(Mathf.Pow(portalX - playerX, 2) + Mathf.Pow(portalZ - playerZ, 2));
-
-        if (isActive && distance < 1)
+        if (gameObject.activeInHierarchy)
         {
-            SceneManager.LoadScene(newGameScene);
+            float playerX = player.transform.position.x;
+            float playerZ = player.transform.position.z;
+            float portalX = transform.position.x;
+            float portalZ = transform.position.z;
+
+            float distance = Mathf.Sqrt(Mathf.Pow(portalX - playerX, 2) + Mathf.Pow(portalZ - playerZ, 2));
+
+
+            // Detect if player is inside of portal
+            if (distance < 1)
+            {
+                SceneManager.LoadScene(newGameScene);
+            }
         }
     }
 }
