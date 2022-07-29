@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public string newGameScene;
-    public AudioSource titleScreenMusic;
-
+    private AudioSource titleScreenMusic;
 
     void Start()
     {
+        titleScreenMusic = gameObject.GetComponent<AudioSource>();
         titleScreenMusic.Play();
     }
 
