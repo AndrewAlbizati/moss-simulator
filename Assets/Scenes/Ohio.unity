@@ -399,6 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152639784}
+  - component: {fileID: 152639785}
   m_Layer: 6
   m_Name: CaliforniaPortal
   m_TagString: Untagged
@@ -427,6 +428,22 @@ Transform:
   m_Father: {fileID: 2031978246}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152639785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152639783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1583042f14771410fbbc3e50e06b8ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameController: {fileID: 757051594}
+  player: {fileID: 1016430255}
+  keybindLabel: {fileID: 412560990}
+  californiaPortal: {fileID: 1642778362}
 --- !u!1001 &168516324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2546,7 +2563,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 76.42493, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3955,7 +3972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 234.6, y: 213.2}
+  m_AnchoredPosition: {x: 217, y: 213.2}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1370251517
@@ -4041,7 +4058,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 26.895996, w: 0}
+  m_margin: {x: 19.218353, y: 0, z: 26.895996, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4835,6 +4852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1642778363}
+  - component: {fileID: 1642778364}
   m_Layer: 6
   m_Name: CaliforniaPortal
   m_TagString: Untagged
@@ -4862,6 +4880,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1642778364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642778362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03a6df1346fe47099c6a9535099bbbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1016430255}
+  newGameScene: California
 --- !u!1 &1672734201 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 179442, guid: 2082f115d38a4a94fabde959cb0bfd45, type: 3}
@@ -4893,7 +4925,6 @@ GameObject:
   - component: {fileID: 1701521188}
   - component: {fileID: 1701521187}
   - component: {fileID: 1701521186}
-  - component: {fileID: 1701521189}
   m_Layer: 6
   m_Name: Portal
   m_TagString: Untagged
@@ -4979,20 +5010,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701521184}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1701521189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701521184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c03a6df1346fe47099c6a9535099bbbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1016430255}
-  newGameScene: California
 --- !u!1 &1726540981
 GameObject:
   m_ObjectHideFlags: 0
@@ -5188,9 +5205,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875743024}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -225.77992, y: -100.81375, z: 427.78616}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -67.75724, y: -31.03475, z: -44.805992}
+  m_LocalScale: {x: 0.19999996, y: 0.2, z: 0.19999996}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 189925195}
@@ -5203,8 +5220,8 @@ Transform:
   - {fileID: 595740005}
   - {fileID: 457433252}
   - {fileID: 1350192013}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 956295454}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1962112870
 GameObject:

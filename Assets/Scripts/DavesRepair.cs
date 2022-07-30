@@ -11,6 +11,8 @@ public class DavesRepair : MonoBehaviour
     public GameObject keybindLabel;
     public GameObject gameController;
 
+    private string text = "Press B to buy for $10 Bradley Bucks";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,9 +39,8 @@ public class DavesRepair : MonoBehaviour
 
                     if (distance < 5)
                     {
-                        keybindLabel.SetActive(true);
                         TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
-                        mText.SetText("Press B to buy for $10 Bradley Bucks");
+                        mText.SetText(text);
                         keybindLabel.SetActive(true);
 
                         if (Input.GetKeyDown(KeyCode.B))
@@ -52,7 +53,7 @@ public class DavesRepair : MonoBehaviour
                             gameController.GetComponent<GameController>().SpendMoney(10);
                         }
                     }
-                    else
+                    else if (keybindLabel.GetComponent<TMP_Text>().text == text)
                     {
                         keybindLabel.SetActive(false);
                     }

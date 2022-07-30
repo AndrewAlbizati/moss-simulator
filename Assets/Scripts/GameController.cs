@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public AudioSource chaChing;
     public AudioSource taskCompleteSound;
 
-    private int bradleyBucks = 0;
+    private int bradleyBucks = 100000;
     private int taskIndex = 0;
 
     private string[] tasks =
@@ -20,7 +20,8 @@ public class GameController : MonoBehaviour
         "Repair computer screens",
         "Search the forest for helpful items",
         "Open the neighbor's house",
-        "Buy California portal" };
+        "Buy California portal",
+        "Enter the California portal"};
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneyLabel.GetComponent<TMP_Text>().SetText(bradleyBucks + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s"));
+        moneyLabel.GetComponent<TMP_Text>().SetText(string.Format("{0:n0}", bradleyBucks) + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s"));
         taskLabel.GetComponent<TMP_Text>().SetText("Task: " + tasks[taskIndex]);
 
         float playerX = player.transform.position.x;

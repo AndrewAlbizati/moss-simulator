@@ -11,7 +11,7 @@ public class CaliforniaPortal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,10 +19,12 @@ public class CaliforniaPortal : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
+            GameObject portal = gameObject.transform.GetChild(4).gameObject;
+
             float playerX = player.transform.position.x;
             float playerZ = player.transform.position.z;
-            float portalX = transform.position.x;
-            float portalZ = transform.position.z;
+            float portalX = portal.transform.position.x;
+            float portalZ = portal.transform.position.z;
 
             float distance = Mathf.Sqrt(Mathf.Pow(portalX - playerX, 2) + Mathf.Pow(portalZ - playerZ, 2));
 
