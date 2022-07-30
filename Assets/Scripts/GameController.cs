@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public AudioSource chaChing;
     public AudioSource taskCompleteSound;
 
-    private int bradleyBucks = 100000;
+    private int bradleyBucks = 0;
     private int taskIndex = 0;
 
     private string[] tasks =
