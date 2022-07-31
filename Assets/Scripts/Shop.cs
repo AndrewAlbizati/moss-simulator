@@ -12,6 +12,8 @@ public class Shop : MonoBehaviour
     public GameObject keybindLabel;
     public GameObject gameController;
 
+    public Material[] materials;
+
     private int shopIndex = 0;
 
     private readonly string[] texts =
@@ -30,56 +32,71 @@ public class Shop : MonoBehaviour
         screen2.SetActive(false);
         decorations.SetActive(false);
         keybindLabel.SetActive(false);
+        UpdateMaterial();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float playerX = player.transform.position.x;
+        float playerZ = player.transform.position.z;
+        float shopX = transform.position.x;
+        float shopZ = transform.position.z;
+
+        float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
+
+        if (distance < 5)
         {
-            float playerX = player.transform.position.x;
-            float playerZ = player.transform.position.z;
-            float shopX = transform.position.x;
-            float shopZ = transform.position.z;
+            TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
+            mText.SetText(texts[shopIndex]);
 
-            float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
-
-            if (distance < 5)
+            if (gameController.GetComponent<GameController>().GetBradleyBucks() >= prices[shopIndex])
             {
-                TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
-                mText.SetText(texts[shopIndex]);
-
                 switch (shopIndex)
                 {
                     case 0:
-                        if (gameController.GetComponent<GameController>().GetTaskIndex() >= 2)
+                        if (gameController.GetComponent<GameController>().GetTaskIndex() == 2)
                         {
-                            if (gameController.GetComponent<GameController>().GetBradleyBucks() >= 10)
+                            keybindLabel.SetActive(true);
+                            if (Input.GetKeyDown(KeyCode.B))
                             {
-                                keybindLabel.SetActive(true);
-                                if (Input.GetKeyDown(KeyCode.B))
-                                {
-                                    keybindLabel.SetActive(false);
-                                    screen1.SetActive(true);
-                                    screen2.SetActive(true);
+                                keybindLabel.SetActive(false);
+                                screen1.SetActive(true);
+                                screen2.SetActive(true);
 
-                                    
 
-                                    gameController.GetComponent<GameController>().IncrementTaskIndex();
-                                    gameController.GetComponent<GameController>().SpendMoney(prices[shopIndex]);
+                                gameController.GetComponent<GameController>().IncrementTaskIndex();
+                                gameController.GetComponent<GameController>().SpendMoney(prices[shopIndex]);
 
-                                    shopIndex++;
-                                    UpdateMaterial();
-                                    gameController.GetComponent<GameController>().AddMoney(200);
-                                }
+                                shopIndex++;
+                                UpdateMaterial();
+                                gameController.GetComponent<GameController>().AddMoney(15);
+                                gameController.GetComponent<GameController>().IncrementTaskIndex();
                             }
                         }
                         break;
                     case 1:
+                        if (gameController.GetComponent<GameController>().GetTaskIndex() == 4)
+                        {
+                            keybindLabel.SetActive(true);
+                            if (Input.GetKeyDown(KeyCode.B))
+                            {
+                                keybindLabel.SetActive(false);
 
+                                gameController.GetComponent<GameController>().IncrementTaskIndex();
+                                gameController.GetComponent<GameController>().SpendMoney(prices[shopIndex]);
+
+                                shopIndex++;
+                                UpdateMaterial();
+
+
+                                gameController.GetComponent<GameController>().AddMoney(200);
+                                gameController.GetComponent<GameController>().IncrementTaskIndex();
+                            }
+                        }
                         break;
                     case 2:
-                        if (gameController.GetComponent<GameController>().GetBradleyBucks() >= 200)
+                        if (gameController.GetComponent<GameController>().GetTaskIndex() == 6)
                         {
                             keybindLabel.SetActive(true);
                             if (Input.GetKeyDown(KeyCode.B))
@@ -90,23 +107,28 @@ public class Shop : MonoBehaviour
                                 gameController.GetComponent<GameController>().IncrementTaskIndex();
                                 gameController.GetComponent<GameController>().SpendMoney(prices[shopIndex]);
 
-                                shopIndex++;
-                                UpdateMaterial();
+                                /*shopIndex++;
+                                UpdateMaterial();*/
                             }
                         }
                         break;
                 }
             }
-            else if (keybindLabel.GetComponent<TMP_Text>().text == texts[shopIndex])
+            else
             {
                 keybindLabel.SetActive(false);
             }
+            
+        }
+        else if (keybindLabel.GetComponent<TMP_Text>().text == texts[shopIndex])
+        {
+            keybindLabel.SetActive(false);
         }
     }
 
     void UpdateMaterial()
     {
         MeshRenderer mr = gameObject.GetComponent<MeshRenderer>();
-        mr.material = mr.materials[shopIndex];
+        mr.sharedMaterial = materials[shopIndex];
     }
 }

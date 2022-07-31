@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
+    public GameObject gameController;
 
     public float walkingSpeed = 12f;
 
@@ -28,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameController.GetComponent<GameController>().isPaused)
+        {
+            return;
+        }
+
         // Create small invisible sphere
         // If it collides with anything in the mask, isGrounded is set to true
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);

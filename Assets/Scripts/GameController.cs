@@ -7,9 +7,12 @@ public class GameController : MonoBehaviour
 {
     public GameObject moneyLabel;
     public GameObject taskLabel;
+    public GameObject pauseLabel;
+
     public GameObject player;
     public AudioSource chaChing;
     public AudioSource taskCompleteSound;
+    public bool isPaused = false;
 
     private int bradleyBucks = 0;
     private int taskIndex = 0;
@@ -18,6 +21,10 @@ public class GameController : MonoBehaviour
         { "Visit the item shop",
         "Collect $10BB in the abandoned house",
         "Repair computer screens",
+        "Earn $15BB on the computer",
+        "Buy an axe from the item shop",
+        "Earn $200BB from chopping trees",
+        "Buy room decorations from the item shop",
         "Search the forest for helpful items",
         "Open the neighbor's house",
         "Buy California portal",
@@ -33,6 +40,24 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isPaused = !isPaused;
+        }
+
+        if (isPaused)
+        {
+            moneyLabel.SetActive(false);
+            taskLabel.SetActive(false);
+            pauseLabel.SetActive(true);
+            return;
+        } else
+        {
+            moneyLabel.SetActive(true);
+            taskLabel.SetActive(true);
+            pauseLabel.SetActive(false);
+        }
+
         moneyLabel.GetComponent<TMP_Text>().SetText(string.Format("{0:n0}", bradleyBucks) + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s"));
         taskLabel.GetComponent<TMP_Text>().SetText("Task: " + tasks[taskIndex]);
 
