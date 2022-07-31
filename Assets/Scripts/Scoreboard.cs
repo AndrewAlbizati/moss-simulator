@@ -5,21 +5,29 @@ using UnityEngine;
 
 public class Scoreboard : MonoBehaviour
 {
+    [Header("Team Settings")]
     public int awayScore = 0;
     public int homeScore = 0;
     public string awayTeam = "SD";
     public string homeTeam = "CLE";
 
+    [Header("Balls/Strikes/Outs")]
     public int balls = 0;
     public int strikes = 0;
     public int outs = 0;
 
+    [Header("Inning Settings")]
     public int inning = 1;
     public bool isTop = true;
 
+    [Header("Base Settings")]
     public bool onFirstBase = false;
     public bool onSecondBase = false;
     public bool onThirdBase = false;
+
+    [Header("Base Materials")]
+    public Material baseEmptyMaterial;
+    public Material baseLoadedMaterial;
 
     private GameObject awayScoreLabel;
     private GameObject homeScoreLabel;
@@ -83,5 +91,105 @@ public class Scoreboard : MonoBehaviour
                 break;
         }
         inningLabel.GetComponent<TMP_Text>().SetText((isTop ? "▲" : "▼") + inning + ordinal);
+
+        firstBase.GetComponent<MeshRenderer>().sharedMaterial = firstBase.GetComponent<MeshRenderer>().materials[onFirstBase ? 1 : 0];
+        secondBase.GetComponent<MeshRenderer>().sharedMaterial = secondBase.GetComponent<MeshRenderer>().materials[onSecondBase ? 1 : 0];
+        thirdBase.GetComponent<MeshRenderer>().sharedMaterial = thirdBase.GetComponent<MeshRenderer>().materials[onThirdBase ? 1 : 0];
+    }
+
+    public void IncrementAwayScore()
+    {
+        awayScore++;
+    }
+
+    public void IncrementHomeScore()
+    {
+        homeScore++;
+    }
+
+    public void IncrementBalls()
+    {
+        if (balls < 4)
+        {
+            balls++;
+        }
+    }
+
+    public void ResetBalls()
+    {
+        balls = 0;
+    }
+
+    public void IncrementStrikes()
+    {
+        if (strikes < 3)
+        {
+            strikes++;
+        }
+    }
+
+    public void ResetStrikes()
+    {
+        strikes = 0;
+    }
+
+    public void IncrementOuts()
+    {
+        if (outs < 3)
+        {
+            outs++;
+        }
+    }
+
+    public void ResetOuts()
+    {
+        outs = 0;
+    }
+
+    public void IncrementInning()
+    {
+        if (isTop)
+        {
+            isTop = false;
+        }
+        else
+        {
+            inning++;
+            isTop = true;
+        }
+    }
+
+    public void ToggleFirstBase()
+    {
+        onFirstBase = !onFirstBase;
+    }
+
+    public void ToggleSecondBase()
+    {
+        onSecondBase = !onSecondBase;
+    }
+
+    public void ToggleThirdBase()
+    {
+        onThirdBase = !onThirdBase;
+    }
+
+    public void Reset()
+    {
+        awayScore = 0;
+        homeScore = 0;
+        awayTeam = "SD";
+        homeTeam = "CLE";
+
+        balls = 0;
+        strikes = 0;
+        outs = 0;
+
+        inning = 1;
+        isTop = true;
+
+        onFirstBase = false;
+        onSecondBase = false;
+        onThirdBase = false;
     }
 }
