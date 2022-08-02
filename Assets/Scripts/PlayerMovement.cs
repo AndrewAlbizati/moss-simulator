@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.GetComponent<GameController>().isPaused)
+        if (gameController.GetComponent<GameController>().IsPaused())
         {
             return;
         }

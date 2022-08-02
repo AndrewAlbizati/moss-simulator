@@ -21,7 +21,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameController.GetComponent<GameController>().isPaused)
+        if (!gameController.GetComponent<GameController>().IsPaused())
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

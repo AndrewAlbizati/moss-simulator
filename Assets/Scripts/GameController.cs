@@ -7,15 +7,16 @@ public class GameController : MonoBehaviour
 {
     public GameObject moneyLabel;
     public GameObject taskLabel;
-    public GameObject pauseLabel;
+    public GameObject pauseCanvas;
 
     public GameObject player;
     public AudioSource chaChing;
     public AudioSource taskCompleteSound;
-    public bool isPaused = false;
 
     private int bradleyBucks = 0;
     private int taskIndex = 0;
+
+    private bool isPaused;
 
     private string[] tasks =
         { "Visit the item shop",
@@ -43,7 +44,6 @@ public class GameController : MonoBehaviour
         {
             bradleyBucks = PlayerPrefs.GetInt("money");
             taskIndex = PlayerPrefs.GetInt("taskindex");
-
         }
         else
         {
@@ -64,20 +64,21 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = !isPaused;
+            TogglePaused();
         }
+
 
         if (isPaused)
         {
             moneyLabel.SetActive(false);
             taskLabel.SetActive(false);
-            pauseLabel.SetActive(true);
+            pauseCanvas.SetActive(true);
             return;
         } else
         {
             moneyLabel.SetActive(true);
             taskLabel.SetActive(true);
-            pauseLabel.SetActive(false);
+            pauseCanvas.SetActive(false);
         }
 
         moneyLabel.GetComponent<TMP_Text>().SetText(string.Format("{0:n0}", bradleyBucks) + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s"));
@@ -152,5 +153,15 @@ public class GameController : MonoBehaviour
     {
         taskCompleteSound.Play();
         taskIndex++;
+    }
+
+    public void TogglePaused()
+    {
+        isPaused = !isPaused;
+    }
+
+    public bool IsPaused()
+    {
+        return isPaused;
     }
 }
