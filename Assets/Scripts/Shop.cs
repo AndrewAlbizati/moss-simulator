@@ -14,8 +14,6 @@ public class Shop : MonoBehaviour
 
     public Material[] materials;
 
-    private int shopIndex = 0;
-
     private readonly string[] texts =
     {
         "Press B to buy for $10 Bradley Bucks",
@@ -24,6 +22,26 @@ public class Shop : MonoBehaviour
     };
 
     private int[] prices = { 10, 15, 200 };
+
+    private int shopIndex = 0;
+
+    private void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("shopindex"))
+        {
+            PlayerPrefs.SetInt("shopindex", shopIndex);
+        }
+        else
+        {
+            shopIndex = 0;
+        }
+            
+    }
+
+    private void OnDisable()
+    {
+        shopIndex = PlayerPrefs.GetInt("shopindex");
+    }
 
     // Start is called before the first frame update
     void Start()

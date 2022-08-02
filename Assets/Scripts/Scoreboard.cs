@@ -92,9 +92,9 @@ public class Scoreboard : MonoBehaviour
         }
         inningLabel.GetComponent<TMP_Text>().SetText((isTop ? "▲" : "▼") + inning + ordinal);
 
-        firstBase.GetComponent<MeshRenderer>().sharedMaterial = firstBase.GetComponent<MeshRenderer>().materials[onFirstBase ? 1 : 0];
-        secondBase.GetComponent<MeshRenderer>().sharedMaterial = secondBase.GetComponent<MeshRenderer>().materials[onSecondBase ? 1 : 0];
-        thirdBase.GetComponent<MeshRenderer>().sharedMaterial = thirdBase.GetComponent<MeshRenderer>().materials[onThirdBase ? 1 : 0];
+        firstBase.GetComponent<MeshRenderer>().material = onFirstBase ? baseLoadedMaterial : baseEmptyMaterial;
+        secondBase.GetComponent<MeshRenderer>().material = onSecondBase ? baseLoadedMaterial : baseEmptyMaterial;
+        thirdBase.GetComponent<MeshRenderer>().material = onThirdBase ? baseLoadedMaterial : baseEmptyMaterial;
     }
 
     public void IncrementAwayScore()
@@ -105,6 +105,16 @@ public class Scoreboard : MonoBehaviour
     public void IncrementHomeScore()
     {
         homeScore++;
+    }
+
+    public void SetAwayTeam(string name)
+    {
+        awayTeam = name;
+    }
+
+    public void SetHomeTeam(string name)
+    {
+        homeTeam = name;
     }
 
     public void IncrementBalls()

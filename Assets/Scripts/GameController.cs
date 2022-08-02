@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -29,6 +30,28 @@ public class GameController : MonoBehaviour
         "Open the neighbor's house",
         "Buy California portal",
         "Enter the California portal"};
+
+
+    void OnDisable()
+    {
+        PlayerPrefs.SetInt("money", bradleyBucks);
+        PlayerPrefs.SetInt("taskindex", taskIndex);
+    }
+
+    void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("money") && PlayerPrefs.HasKey("taskindex"))
+        {
+            bradleyBucks = PlayerPrefs.GetInt("money");
+            taskIndex = PlayerPrefs.GetInt("taskindex");
+
+        }
+        else
+        {
+            bradleyBucks = 0;
+            taskIndex = 0;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +111,12 @@ public class GameController : MonoBehaviour
             case 2:
                 break;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SceneManager.LoadScene("Baseball");
+        }
     }
 
     public void PlayChaChing()
@@ -120,5 +149,5 @@ public class GameController : MonoBehaviour
     {
         taskCompleteSound.Play();
         taskIndex++;
-    } 
+    }
 }

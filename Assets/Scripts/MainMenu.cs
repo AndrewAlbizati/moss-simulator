@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         titleScreenMusic = gameObject.GetComponent<AudioSource>();
         titleScreenMusic.Play();
     }

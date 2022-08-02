@@ -21,6 +21,27 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+    private void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("posx") && PlayerPrefs.HasKey("posy") && PlayerPrefs.HasKey("posz") && PlayerPrefs.HasKey("rotx") && PlayerPrefs.HasKey("roty") && PlayerPrefs.HasKey("rotz"))
+        {
+            gameObject.transform.position = new Vector3(PlayerPrefs.GetFloat("posx"), PlayerPrefs.GetFloat("posy"), PlayerPrefs.GetFloat("posz"));
+            gameObject.transform.eulerAngles = new Vector3(PlayerPrefs.GetFloat("rotx"), PlayerPrefs.GetFloat("roty"), PlayerPrefs.GetFloat("rotz"));
+        }
+    }
+
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetFloat("posx", transform.position.x);
+        PlayerPrefs.SetFloat("posy", transform.position.y);
+        PlayerPrefs.SetFloat("posz", transform.position.z);
+
+        PlayerPrefs.SetFloat("rotx", transform.eulerAngles.x);
+        PlayerPrefs.SetFloat("roty", transform.eulerAngles.y);
+        PlayerPrefs.SetFloat("rotz", transform.eulerAngles.z);
+    }
+
     private void Start()
     {
         speed = walkingSpeed;
@@ -67,5 +88,15 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void SetPos(float x, float y, float z)
+    {
+        
+    }
+
+    public void SetRotation(float x, float y, float z)
+    {
+        gameObject.transform.eulerAngles = new Vector3(x, y ,z);
     }
 }

@@ -1,0 +1,184 @@
+{
+    "teams": [
+        {
+            "name": "Diamondbacks",
+            "city": "Arizona",
+            "abbreviation": "ARI",
+            "rate": 0.45
+        },
+        {
+            "name": "Braves",
+            "city": "Atlanta",
+            "abbreviation": "ATL",
+            "rate": 0.598
+        },
+        {
+            "name": "Orioles",
+            "city": "Baltimore",
+            "abbreviation": "BAL",
+            "rate": 0.505
+        },
+        {
+            "name": "Red Sox",
+            "city": "Boston",
+            "abbreviation": "BOS",
+            "rate": 0.49
+        },
+        {
+            "name": "White Sox",
+            "city": "Chicago",
+            "abbreviation": "CWS",
+            "rate": 0.5
+        },
+        {
+            "name": "Cubs",
+            "city": "Chicago",
+            "abbreviation": "CHC",
+            "rate": 0.41
+        },
+        {
+            "name": "Reds",
+            "city": "Cincinnati",
+            "abbreviation": "CIN",
+            "rate": 0.39
+        },
+        {
+            "name": "Guardians",
+            "city": "Cleveland",
+            "abbreviation": "CLE",
+            "rate": 0.51
+        },
+        {
+            "name": "Rockies",
+            "city": "Colorado",
+            "abbreviation": "COL",
+            "rate": 0.451
+        },
+        {
+            "name": "Tigers",
+            "city": "Detroit",
+            "abbreviation": "DET",
+            "rate": 0.402
+        },
+        {
+            "name": "Astros",
+            "city": "Houston",
+            "abbreviation": "HOU",
+            "rate": 0.647
+        },
+        {
+            "name": "Royals",
+            "city": "Kansas City",
+            "abbreviation": "KC",
+            "rate": 0.386
+        },
+        {
+            "name": "Angels",
+            "city": "Los Angeles",
+            "abbreviation": "LAA",
+            "rate": 0.426
+        },
+        {
+            "name": "Dodgers",
+            "city": "Los Angeles",
+            "abbreviation": "LAD",
+            "rate": 0.67
+        },
+        {
+            "name": "Marlins",
+            "city": "Miami",
+            "abbreviation": "MIA",
+            "rate": 0.465
+        },
+        {
+            "name": "Brewers",
+            "city": "Milwaukee",
+            "abbreviation": "MIL",
+            "rate": 0.564
+        },
+        {
+            "name": "Twins",
+            "city": "Minnesota",
+            "abbreviation": "MIN",
+            "rate": 0.53
+        },
+        {
+            "name": "Mets",
+            "city": "New York",
+            "abbreviation": "NYM",
+            "rate": 0.63
+        },
+        {
+            "name": "Yankees",
+            "city": "New York",
+            "abbreviation": "NYY",
+            "rate": 0.677
+        },
+        {
+            "name": "Athletics",
+            "city": "Oakland",
+            "abbreviation": "OAK",
+            "rate": 0.379
+        },
+        {
+            "name": "Phillies",
+            "city": "Philadelphia",
+            "abbreviation": "PHI",
+            "rate": 0.535
+        },
+        {
+            "name": "Pirates",
+            "city": "Pittsburgh",
+            "abbreviation": "PIT",
+            "rate": 0.396
+        },
+        {
+            "name": "Padres",
+            "city": "San Diego",
+            "abbreviation": "SD",
+            "rate": 0.549
+        },
+        {
+            "name": "Giants",
+            "city": "San Francisco",
+            "abbreviation": "SF",
+            "rate": 0.495
+        },
+        {
+            "name": "Mariners",
+            "city": "Seattle",
+            "abbreviation": "SEA",
+            "rate": 0.539
+        },
+        {
+            "name": "Cardinals",
+            "city": "St. Louis",
+            "abbreviation": "STL",
+            "rate": 0.525
+        },
+        {
+            "name": "Rays",
+            "city": "Tampa Bay",
+            "abbreviation": "TB",
+            "rate": 0.535
+        },
+        {
+            "name": "Rangers",
+            "city": "Texas",
+            "abbreviation": "TEX",
+            "rate": 0.45
+        },
+        {
+            "name": "Blue Jays",
+            "city": "Toronto",
+            "abbreviation": "TOR",
+            "rate": 0.555
+        },
+        {
+            "name": "Nationals",
+            "city": "Washington",
+            "abbreviation": "WAS",
+            "rate": 0.343
+        }
+    ]
+}

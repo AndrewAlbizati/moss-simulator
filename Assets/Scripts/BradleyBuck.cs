@@ -7,19 +7,41 @@ public class BradleyBuck : MonoBehaviour
     public GameObject player;
     public GameObject gameController;
 
-    private bool collected;
+    private bool collected = false;
+
+    private void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("collected" + transform.position.x))
+        {
+            collected = PlayerPrefs.GetInt("collected" + transform.position.x) == 1;
+        }
+        else
+        {
+            collected = false;
+        }
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetInt("collected" + transform.position.x, collected ? 1 : 0);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        collected = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!collected)
+        if (collected)
         {
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+
             if (gameController.GetComponent<GameController>().GetTaskIndex() >= 1)
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -39,8 +61,8 @@ public class BradleyBuck : MonoBehaviour
 
                 if (distance < 2 && Mathf.Abs(player.transform.position.y - transform.position.y) < 4)
                 {
-                    gameObject.SetActive(false);
                     collected = true;
+                    gameObject.SetActive(false);
                     gameController.GetComponent<GameController>().AddMoney(1);
                     gameController.GetComponent<GameController>().PlayChaChing();
                 }
