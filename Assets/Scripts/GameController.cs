@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -108,14 +107,18 @@ public class GameController : MonoBehaviour
                 }
                 break;
 
-            case 2:
+            case 3:
+                if (bradleyBucks >= 15)
+                {
+                    IncrementTaskIndex();
+                }
                 break;
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SceneManager.LoadScene("Baseball");
+            case 5:
+                if (bradleyBucks >= 200)
+                {
+                    IncrementTaskIndex();
+                }
+                break;
         }
     }
 

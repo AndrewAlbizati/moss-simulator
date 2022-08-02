@@ -208,17 +208,18 @@ public class BaseballController : MonoBehaviour
             }
         }
 
-        statusPopup.GetComponent<MeshRenderer>().material = winningTeam.abbreviation == bettedTeam.abbreviation ? winner : loser;
-        statusPopup.SetActive(true);
-        /*
         if (winningTeam.abbreviation == bettedTeam.abbreviation)
         {
-            GameObject.Find("GameController").GetComponent<GameController>().AddMoney(10);
+            statusPopup.GetComponent<MeshRenderer>().material = winner;
+            PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") + 10);
         }
         else
         {
-            GameObject.Find("GameController").GetComponent<GameController>().SpendMoney(10);
-        }*/
+            statusPopup.GetComponent<MeshRenderer>().material = loser;
+            PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 10);
+        }
+        
+        statusPopup.SetActive(true);
     }
 
     void SimulateTick()
