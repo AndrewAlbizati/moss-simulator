@@ -271,7 +271,24 @@ public class BaseballController : MonoBehaviour
 
     Team DetermineWinner(Team team1, Team team2)
     {
-        float winPercent = 0.5f + team1.rate - team2.rate;
+        float team1Rate = team1.rate;
+        float team2Rate = team2.rate;
+
+        if (PlayerPrefs.GetInt("money") <= -20)
+        {
+            if (team1.abbreviation == bettedTeam.abbreviation)
+            {
+                team1Rate += 0.3f;
+            }
+            else
+            {
+                team2Rate += 0.3f;
+            }
+        }
+
+        float winPercent = 0.5f + team1Rate - team2Rate;
+   
+        
 
         return Random.value > winPercent ? team2 : team1;
     }
