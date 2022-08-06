@@ -153,7 +153,7 @@ public class BaseballController : MonoBehaviour
                 break;
             }
 
-            yield return new WaitForSeconds(2f);
+            //yield return new WaitForSeconds(2f);
 
             scoreboard.GetComponent<Scoreboard>().IncrementInning();
             scoreboard.GetComponent<Scoreboard>().ResetBalls();
@@ -193,7 +193,7 @@ public class BaseballController : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().strikes = 3;
             scoreboard.GetComponent<Scoreboard>().outs = 3;
             scoreboard.GetComponent<Scoreboard>().balls = Random.Range(0, 4);
-            yield return new WaitForSeconds(2);
+            //yield return new WaitForSeconds(2);
    
             if (i != 9)
             {
@@ -287,8 +287,6 @@ public class BaseballController : MonoBehaviour
         }
 
         float winPercent = 0.5f + team1Rate - team2Rate;
-   
-        
 
         return Random.value > winPercent ? team2 : team1;
     }

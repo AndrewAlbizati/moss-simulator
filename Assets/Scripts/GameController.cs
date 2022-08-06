@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject moneyLabel;
-    public GameObject taskLabel;
+    public GameObject labelsCanvas;
     public GameObject pauseCanvas;
 
     public GameObject player;
     public AudioSource chaChing;
     public AudioSource taskCompleteSound;
 
+    private GameObject moneyLabel;
+    private GameObject taskLabel;
+    private GameObject keybindLabel;
+    private GameObject crosshair;
+
     private int bradleyBucks = 0;
+    private int coniferCount = 0;
     private int taskIndex = 0;
 
     private bool isPaused;
@@ -26,8 +31,13 @@ public class GameController : MonoBehaviour
         "Buy an axe from the item shop",
         "Earn $200BB from chopping trees",
         "Buy room decorations from the item shop",
-        "Search the forest for helpful items",
+        "Search the mountains for helpful items",
         "Open the neighbor's house",
+
+
+
+
+
         "Buy California portal",
         "Enter the California portal"};
 
@@ -35,19 +45,22 @@ public class GameController : MonoBehaviour
     void OnDisable()
     {
         PlayerPrefs.SetInt("money", bradleyBucks);
+        PlayerPrefs.SetInt("conifers", coniferCount);
         PlayerPrefs.SetInt("taskindex", taskIndex);
     }
 
     void OnEnable()
     {
-        if (PlayerPrefs.HasKey("money") && PlayerPrefs.HasKey("taskindex"))
+        if (PlayerPrefs.HasKey("money") && PlayerPrefs.HasKey("conifers") && PlayerPrefs.HasKey("taskindex"))
         {
             bradleyBucks = PlayerPrefs.GetInt("money");
+            coniferCount = PlayerPrefs.GetInt("conifers");
             taskIndex = PlayerPrefs.GetInt("taskindex");
         }
         else
         {
             bradleyBucks = 0;
+            coniferCount = 0;
             taskIndex = 0;
         }
     }
@@ -55,6 +68,10 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        moneyLabel = labelsCanvas.transform.GetChild(0).gameObject;
+        taskLabel = labelsCanvas.transform.GetChild(1).gameObject;
+        keybindLabel = labelsCanvas.transform.GetChild(2).gameObject;
+        crosshair = labelsCanvas.transform.GetChild(3).gameObject;
         chaChing.Stop();
         taskCompleteSound.Stop();
     }
@@ -72,16 +89,22 @@ public class GameController : MonoBehaviour
         {
             moneyLabel.SetActive(false);
             taskLabel.SetActive(false);
+            keybindLabel.SetActive(false);
+            crosshair.SetActive(false);
             pauseCanvas.SetActive(true);
             return;
         } else
         {
             moneyLabel.SetActive(true);
             taskLabel.SetActive(true);
+            crosshair.SetActive(true);
             pauseCanvas.SetActive(false);
         }
 
-        moneyLabel.GetComponent<TMP_Text>().SetText(string.Format("{0:n0}", bradleyBucks) + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s"));
+        string bradleyBuckDisplay = string.Format("{0:n0}", bradleyBucks) + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s");
+        string conifersDisplay = taskIndex > 4 ? coniferCount + " Conifer" + (coniferCount == 1 ? "" : "s") : "";
+        moneyLabel.GetComponent<TMP_Text>().SetText(bradleyBuckDisplay + "\n" + conifersDisplay);
+
         taskLabel.GetComponent<TMP_Text>().SetText("Task: " + tasks[taskIndex]);
 
         float playerX = player.transform.position.x;
@@ -147,6 +170,21 @@ public class GameController : MonoBehaviour
     {
         chaChing.Play();
         bradleyBucks -= amount;
+    }
+
+    public int GetConiferCount()
+    {
+        return coniferCount;
+    }
+
+    public void IncrementConiferCount()
+    {
+        coniferCount++;
+    }
+
+    public void ResetConiferCount()
+    {
+        coniferCount = 0;
     }
 
     public void IncrementTaskIndex()

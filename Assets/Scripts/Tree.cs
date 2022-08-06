@@ -12,17 +12,21 @@ public class Tree : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<AudioSource>().Stop();
-
-        Terrain.activeTerrain.GetComponent<TerrainCollider>().enabled = false;
-        Terrain.activeTerrain.terrainData.treeInstances = new TreeInstance[0];
-
-        for (int i = 0; i < 5000; i++)
+        if (!PlayerPrefs.HasKey("treesGenerated"))
         {
-            CreateTree();
-        }
+            Terrain.activeTerrain.GetComponent<TerrainCollider>().enabled = false;
+            Terrain.activeTerrain.terrainData.treeInstances = new TreeInstance[0];
 
-        Terrain.activeTerrain.GetComponent<TerrainCollider>().enabled = true;
-        Terrain.activeTerrain.Flush();
+            for (int i = 0; i < 5000; i++)
+            {
+                CreateTree();
+            }
+
+            Terrain.activeTerrain.GetComponent<TerrainCollider>().enabled = true;
+            Terrain.activeTerrain.Flush();
+
+            PlayerPrefs.SetInt("treesGenerated", 1);
+        }
         TreeInstances = new List<TreeInstance>(Terrain.activeTerrain.terrainData.treeInstances);
     }
 
@@ -89,7 +93,7 @@ public class Tree : MonoBehaviour
                     Terrain.activeTerrain.GetComponent<TerrainCollider>().enabled = true;
                     Terrain.activeTerrain.Flush();
 
-                    gameController.GetComponent<GameController>().AddMoney(5);
+                    gameController.GetComponent<GameController>().IncrementConiferCount();
                     PlaySound();
                 }
             }
