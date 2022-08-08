@@ -47,10 +47,10 @@ public class Key : MonoBehaviour
 
         float playerX = player.transform.position.x;
         float playerZ = player.transform.position.z;
-        float shopX = transform.position.x;
-        float shopZ = transform.position.z;
+        float keyX = transform.position.x;
+        float keyZ = transform.position.z;
 
-        float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
+        float distance = Mathf.Sqrt(Mathf.Pow(keyX - playerX, 2) + Mathf.Pow(keyZ - playerZ, 2));
 
         if (distance < 5)
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -10,9 +11,10 @@ public class BaseballController : MonoBehaviour
     public GameObject scoreboard;
     public GameObject betboard;
     public GameObject statusPopup;
+    public AudioClip baseballMusic;
 
-    public Material winner;
-    public Material loser;
+    public Sprite winner;
+    public Sprite loser;
 
     [System.Serializable]
     private class Team
@@ -38,12 +40,16 @@ public class BaseballController : MonoBehaviour
     private Team bettedTeam;
     private Team winningTeam;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.Stop();
 
         teamList = JsonUtility.FromJson<TeamList>(textJson.text);
 
@@ -61,8 +67,8 @@ public class BaseballController : MonoBehaviour
         scoreboard.SetActive(false);
         statusPopup.SetActive(false);
 
-        betboard.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TMP_Text>().SetText(awayTeam.abbreviation);
-        betboard.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<TMP_Text>().SetText(homeTeam.abbreviation);
+        betboard.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().SetText(awayTeam.abbreviation);
+        betboard.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<TMP_Text>().SetText(homeTeam.abbreviation);
     }
 
     // Update is called once per frame
@@ -93,6 +99,10 @@ public class BaseballController : MonoBehaviour
     {
         betboard.SetActive(false);
         scoreboard.SetActive(true);
+
+        audioSource.Stop();
+        audioSource.clip = baseballMusic;
+        audioSource.Play();
 
         scoreboard.GetComponent<Scoreboard>().Reset();
         scoreboard.GetComponent<Scoreboard>().SetAwayTeam(awayTeam.abbreviation);
@@ -210,15 +220,16 @@ public class BaseballController : MonoBehaviour
 
         if (winningTeam.abbreviation == bettedTeam.abbreviation)
         {
-            statusPopup.GetComponent<MeshRenderer>().material = winner;
+            statusPopup.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = winner;
             PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") + 10);
         }
         else
         {
-            statusPopup.GetComponent<MeshRenderer>().material = loser;
+            statusPopup.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = loser;
             PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 10);
         }
-        
+
+        audioSource.Stop();
         statusPopup.SetActive(true);
     }
 

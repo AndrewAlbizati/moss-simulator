@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Scoreboard : MonoBehaviour
@@ -25,10 +26,6 @@ public class Scoreboard : MonoBehaviour
     public bool onSecondBase = false;
     public bool onThirdBase = false;
 
-    [Header("Base Materials")]
-    public Material baseEmptyMaterial;
-    public Material baseLoadedMaterial;
-
     private GameObject awayScoreLabel;
     private GameObject homeScoreLabel;
     private GameObject awayTeamLabel;
@@ -44,17 +41,17 @@ public class Scoreboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject canvas = gameObject.transform.GetChild(1).gameObject;
-        awayScoreLabel = canvas.transform.GetChild(0).gameObject;
-        homeScoreLabel = canvas.transform.GetChild(1).gameObject;
-        awayTeamLabel = canvas.transform.GetChild(2).gameObject;
-        homeTeamLabel = canvas.transform.GetChild(3).gameObject;
-        strikesLabel = canvas.transform.GetChild(4).gameObject;
-        outsLabel = canvas.transform.GetChild(5).gameObject;
-        inningLabel = canvas.transform.GetChild(6).gameObject;
+        GameObject canvas = gameObject.transform.GetChild(0).gameObject;
+        awayScoreLabel = canvas.transform.GetChild(1).gameObject;
+        homeScoreLabel = canvas.transform.GetChild(2).gameObject;
+        awayTeamLabel = canvas.transform.GetChild(3).gameObject;
+        homeTeamLabel = canvas.transform.GetChild(4).gameObject;
+        strikesLabel = canvas.transform.GetChild(5).gameObject;
+        outsLabel = canvas.transform.GetChild(6).gameObject;
+        inningLabel = canvas.transform.GetChild(7).gameObject;
 
 
-        GameObject bases = gameObject.transform.GetChild(2).gameObject;
+        GameObject bases = canvas.transform.GetChild(10).gameObject;
         firstBase = bases.transform.GetChild(0).gameObject;
         secondBase = bases.transform.GetChild(1).gameObject;
         thirdBase = bases.transform.GetChild(2).gameObject;
@@ -92,9 +89,9 @@ public class Scoreboard : MonoBehaviour
         }
         inningLabel.GetComponent<TMP_Text>().SetText((isTop ? "▲" : "▼") + inning + ordinal);
 
-        firstBase.GetComponent<MeshRenderer>().material = onFirstBase ? baseLoadedMaterial : baseEmptyMaterial;
-        secondBase.GetComponent<MeshRenderer>().material = onSecondBase ? baseLoadedMaterial : baseEmptyMaterial;
-        thirdBase.GetComponent<MeshRenderer>().material = onThirdBase ? baseLoadedMaterial : baseEmptyMaterial;
+        firstBase.GetComponent<Image>().color = onFirstBase ? new Color(255, 255, 0) : new Color(255, 255, 255);
+        secondBase.GetComponent<Image>().color = onSecondBase ? new Color(255, 255, 0) : new Color(255, 255, 255);
+        thirdBase.GetComponent<Image>().color = onThirdBase ? new Color(255, 255, 0) : new Color(255, 255, 255);
     }
 
     public void IncrementAwayScore()
