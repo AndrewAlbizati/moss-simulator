@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -55,7 +56,7 @@ public class BaseballController : MonoBehaviour
         int team1Index;
         do
         {
-            team1Index = Random.Range(0, teamList.teams.Length);
+            team1Index = UnityEngine.Random.Range(0, teamList.teams.Length);
         } while (team1Index == 7);
         awayTeam = teamList.teams[team1Index];
 
@@ -115,8 +116,8 @@ public class BaseballController : MonoBehaviour
 
         do
         {
-            awayScore = Random.Range(0, 9);
-            homeScore = Random.Range(0, 9);
+            awayScore = UnityEngine.Random.Range(0, 9);
+            homeScore = UnityEngine.Random.Range(0, 9);
         } while ((awayScore >= homeScore && winningTeam.abbreviation == homeTeam.abbreviation) || (awayScore <= homeScore && winningTeam.abbreviation == awayTeam.abbreviation));
 
         // Simulate 9 innings
@@ -125,17 +126,23 @@ public class BaseballController : MonoBehaviour
             // Simulate balls and strikes
             for (int j = 0; j < 200; j++)
             {
+                DateTime before = DateTime.Now;
                 SimulateTick();
                 if (scoreboard.GetComponent<Scoreboard>().outs == 3)
                 {
                     break;
                 }
-                yield return new WaitForSeconds(0.01f);
+                DateTime after = DateTime.Now;
+
+                if (after.Subtract(before).Seconds < 0.01f)
+                {
+                    yield return new WaitForSeconds(0.01f - after.Subtract(before).Seconds);
+                }
             }
 
 
             // Add away score
-            if (Random.Range(0, 2) == 0 && awayScore > 0)
+            if (UnityEngine.Random.Range(0, 2) == 0 && awayScore > 0)
             {
                 scoreboard.GetComponent<Scoreboard>().IncrementAwayScore();
                 awayScore--;
@@ -150,7 +157,7 @@ public class BaseballController : MonoBehaviour
 
             scoreboard.GetComponent<Scoreboard>().strikes = 3;
             scoreboard.GetComponent<Scoreboard>().outs = 3;
-            scoreboard.GetComponent<Scoreboard>().balls = Random.Range(0, 4);
+            scoreboard.GetComponent<Scoreboard>().balls = UnityEngine.Random.Range(0, 4);
 
             // End game if home team is up at the middle of the 9th
             if (i == 9 && scoreboard.GetComponent<Scoreboard>().homeScore > scoreboard.GetComponent<Scoreboard>().awayScore)
@@ -170,17 +177,23 @@ public class BaseballController : MonoBehaviour
             // Simulate balls and strikes
             for (int j = 0; j < 200; j++)
             {
+                DateTime before = DateTime.Now;
                 SimulateTick();
                 if (scoreboard.GetComponent<Scoreboard>().outs == 3)
                 {
                     break;
                 }
-                yield return new WaitForSeconds(0.01f);
+                DateTime after = DateTime.Now;
+
+                if (after.Subtract(before).Seconds < 0.01f)
+                {
+                    yield return new WaitForSeconds(0.01f - after.Subtract(before).Seconds);
+                }
             }
 
 
             // Add home score
-            if (Random.Range(0, 2) == 0 && homeScore > 0)
+            if (UnityEngine.Random.Range(0, 2) == 0 && homeScore > 0)
             {
                 scoreboard.GetComponent<Scoreboard>().IncrementHomeScore();
                 homeScore--;
@@ -195,7 +208,7 @@ public class BaseballController : MonoBehaviour
 
             scoreboard.GetComponent<Scoreboard>().strikes = 3;
             scoreboard.GetComponent<Scoreboard>().outs = 3;
-            scoreboard.GetComponent<Scoreboard>().balls = Random.Range(0, 4);
+            scoreboard.GetComponent<Scoreboard>().balls = UnityEngine.Random.Range(0, 4);
    
             if (i != 9)
             {
@@ -238,34 +251,34 @@ public class BaseballController : MonoBehaviour
         }
 
 
-        if (Random.Range(0, 10) == 0)
+        if (UnityEngine.Random.Range(0, 10) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementBalls();
         }
 
-        if (Random.Range(0, 10) == 0)
+        if (UnityEngine.Random.Range(0, 10) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementStrikes();
         }
 
-        if (Random.Range(0, 100) == 0)
+        if (UnityEngine.Random.Range(0, 100) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementOuts();
         }
 
 
 
-        if (Random.Range(0, 100) == 0)
+        if (UnityEngine.Random.Range(0, 100) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleFirstBase();
         }
 
-        if (Random.Range(0, 100) == 0)
+        if (UnityEngine.Random.Range(0, 100) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleSecondBase();
         }
 
-        if (Random.Range(0, 100) == 0)
+        if (UnityEngine.Random.Range(0, 100) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleThirdBase();
         }
@@ -291,6 +304,6 @@ public class BaseballController : MonoBehaviour
 
         float winPercent = 0.5f + team1Rate - team2Rate;
 
-        return Random.value > winPercent ? team2 : team1;
+        return UnityEngine.Random.value > winPercent ? team2 : team1;
     }
 }
