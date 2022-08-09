@@ -16,7 +16,6 @@ public class Shop : MonoBehaviour
 
 
     private bool hasScreens = false;
-    private bool hasAxe = false;
     private bool hasDecorations = false;
 
     private readonly string[] texts =
@@ -124,8 +123,6 @@ public class Shop : MonoBehaviour
                             if (Input.GetKeyDown(KeyCode.B))
                             {
                                 keybindLabel.SetActive(false);
-
-                                hasAxe = true;
 
                                 gameController.GetComponent<GameController>().IncrementTaskIndex();
                                 gameController.GetComponent<GameController>().SpendMoney(prices[shopIndex]);
