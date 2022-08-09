@@ -9,13 +9,15 @@ public class GameController : MonoBehaviour
     public GameObject pauseCanvas;
 
     public GameObject player;
-    public AudioSource chaChing;
-    public AudioSource taskCompleteSound;
+
+    public AudioClip chaChing;
+    public AudioClip taskCompleteSound;
 
     private GameObject moneyLabel;
     private GameObject taskLabel;
     private GameObject keybindLabel;
     private GameObject crosshair;
+    private AudioSource audioSource;
 
     private int bradleyBucks = 0;
     private int coniferCount = 0;
@@ -68,12 +70,11 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         moneyLabel = labelsCanvas.transform.GetChild(0).gameObject;
         taskLabel = labelsCanvas.transform.GetChild(1).gameObject;
         keybindLabel = labelsCanvas.transform.GetChild(2).gameObject;
         crosshair = labelsCanvas.transform.GetChild(3).gameObject;
-        chaChing.Stop();
-        taskCompleteSound.Stop();
     }
 
     // Update is called once per frame
@@ -148,7 +149,8 @@ public class GameController : MonoBehaviour
 
     public void PlayChaChing()
     {
-        chaChing.Play();
+        audioSource.clip = chaChing;
+        audioSource.Play();
     }
 
     public int GetTaskIndex()
@@ -168,7 +170,7 @@ public class GameController : MonoBehaviour
 
     public void SpendMoney(int amount)
     {
-        chaChing.Play();
+        PlayChaChing();
         bradleyBucks -= amount;
     }
 
@@ -189,7 +191,8 @@ public class GameController : MonoBehaviour
 
     public void IncrementTaskIndex()
     {
-        taskCompleteSound.Play();
+        audioSource.clip = taskCompleteSound;
+        audioSource.Play();
         taskIndex++;
     }
 

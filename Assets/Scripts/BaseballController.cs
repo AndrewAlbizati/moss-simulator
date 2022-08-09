@@ -49,7 +49,6 @@ public class BaseballController : MonoBehaviour
         Cursor.visible = true;
 
         audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.Stop();
 
         teamList = JsonUtility.FromJson<TeamList>(textJson.text);
 
@@ -120,22 +119,18 @@ public class BaseballController : MonoBehaviour
             homeScore = Random.Range(0, 9);
         } while ((awayScore >= homeScore && winningTeam.abbreviation == homeTeam.abbreviation) || (awayScore <= homeScore && winningTeam.abbreviation == awayTeam.abbreviation));
 
-
-        Debug.Log(winningTeam.abbreviation);
-
-
         // Simulate 9 innings
         for (int i = 1; i < 10; i++)
         {
             // Simulate balls and strikes
-            for (int j = 0; j < 500; j++)
+            for (int j = 0; j < 200; j++)
             {
                 SimulateTick();
                 if (scoreboard.GetComponent<Scoreboard>().outs == 3)
                 {
                     break;
                 }
-                yield return new WaitForSeconds(0.004f);
+                yield return new WaitForSeconds(0.01f);
             }
 
 
@@ -163,8 +158,6 @@ public class BaseballController : MonoBehaviour
                 break;
             }
 
-            //yield return new WaitForSeconds(2f);
-
             scoreboard.GetComponent<Scoreboard>().IncrementInning();
             scoreboard.GetComponent<Scoreboard>().ResetBalls();
             scoreboard.GetComponent<Scoreboard>().ResetStrikes();
@@ -175,14 +168,14 @@ public class BaseballController : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().onThirdBase = false;
 
             // Simulate balls and strikes
-            for (int j = 0; j < 500; j++)
+            for (int j = 0; j < 200; j++)
             {
                 SimulateTick();
                 if (scoreboard.GetComponent<Scoreboard>().outs == 3)
                 {
                     break;
                 }
-                yield return new WaitForSeconds(0.004f);
+                yield return new WaitForSeconds(0.01f);
             }
 
 
@@ -203,7 +196,6 @@ public class BaseballController : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().strikes = 3;
             scoreboard.GetComponent<Scoreboard>().outs = 3;
             scoreboard.GetComponent<Scoreboard>().balls = Random.Range(0, 4);
-            //yield return new WaitForSeconds(2);
    
             if (i != 9)
             {
@@ -246,34 +238,34 @@ public class BaseballController : MonoBehaviour
         }
 
 
-        if (Random.Range(0, 30) == 0)
+        if (Random.Range(0, 10) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementBalls();
         }
 
-        if (Random.Range(0, 30) == 0)
+        if (Random.Range(0, 10) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementStrikes();
         }
 
-        if (Random.Range(0, 150) == 0)
+        if (Random.Range(0, 100) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementOuts();
         }
 
 
 
-        if (Random.Range(0, 200) == 0)
+        if (Random.Range(0, 100) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleFirstBase();
         }
 
-        if (Random.Range(0, 200) == 0)
+        if (Random.Range(0, 100) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleSecondBase();
         }
 
-        if (Random.Range(0, 200) == 0)
+        if (Random.Range(0, 100) == 0)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleThirdBase();
         }
