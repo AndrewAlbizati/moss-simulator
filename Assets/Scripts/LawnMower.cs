@@ -55,12 +55,12 @@ public class LawnMower : MonoBehaviour
             if (distance < 5)
             {
                 TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
-                mText.SetText(gameController.IsRiding() ? dismountText : rideText);
+                mText.SetText(player.GetComponent<PlayerMovement>().IsRiding() ? dismountText : rideText);
                 keybindLabel.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.B))
                 {
-                    gameController.ToggleRiding();
+                    player.GetComponent<PlayerMovement>().ToggleRiding();
                 }
             }
             else if (keybindLabel.GetComponent<TMP_Text>().text == rideText || keybindLabel.GetComponent<TMP_Text>().text == dismountText)
@@ -69,7 +69,7 @@ public class LawnMower : MonoBehaviour
             }
 
 
-            if (gameController.IsRiding())
+            if (player.GetComponent<PlayerMovement>().IsRiding())
             {
                 transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, player.transform.eulerAngles.y + 180, player.transform.eulerAngles.z);
             }

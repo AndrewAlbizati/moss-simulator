@@ -46,7 +46,7 @@ public class TreeShop : MonoBehaviour
             text = "Press B to sell " + gameController.GetConiferCount() + " conifer" + (gameController.GetConiferCount() == 1 ? "" : "s") + " for $" + gameController.GetConiferCount() * 5 + "BB";
         }
          
-        if (distance < 5)
+        if (distance < 5 && !player.GetComponent<PlayerMovement>().IsRiding())
         {
             TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
             mText.SetText(text);

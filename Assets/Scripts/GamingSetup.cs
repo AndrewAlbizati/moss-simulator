@@ -29,7 +29,7 @@ public class GamingSetup : MonoBehaviour
 
             float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
 
-            if (distance < 5)
+            if (distance < 5 && !player.GetComponent<PlayerMovement>().IsRiding())
             {
                 TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
                 mText.SetText(text);

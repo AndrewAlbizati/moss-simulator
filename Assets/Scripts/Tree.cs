@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tree : MonoBehaviour
 {
     public GameObject gameControllerObject;
+    public GameObject player;
     public AudioClip[] clips;
 
     private GameController gameController;
@@ -35,7 +36,7 @@ public class Tree : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.GetTaskIndex() >= 5)
+        if (gameController.GetTaskIndex() >= 5 && !player.GetComponent<PlayerMovement>().IsRiding())
         {
             // Left click event
             if (Input.GetMouseButtonDown(0))

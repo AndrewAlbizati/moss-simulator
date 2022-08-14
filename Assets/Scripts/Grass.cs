@@ -28,7 +28,7 @@ public class Grass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.IsRiding())
+        if (player.GetComponent<PlayerMovement>().IsRiding())
         {
             CutGrass(player.transform.position, 4);
         }

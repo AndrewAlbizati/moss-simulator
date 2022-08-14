@@ -5,9 +5,10 @@ using UnityEngine;
 public class BradleyBuck : MonoBehaviour
 {
     public GameObject player;
-    public GameObject gameController;
+    public GameObject gameControllerObject;
 
     private bool collected = false;
+    private GameController gameController;
 
     private void OnEnable()
     {
@@ -29,7 +30,7 @@ public class BradleyBuck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameController = gameControllerObject.GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public class BradleyBuck : MonoBehaviour
         else
         {
 
-            if (gameController.GetComponent<GameController>().GetTaskIndex() >= 1)
+            if (gameController.GetTaskIndex() >= 1)
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = true;
             } else if (gameObject.GetComponent<MeshRenderer>().enabled)
@@ -63,8 +64,8 @@ public class BradleyBuck : MonoBehaviour
                 {
                     collected = true;
                     gameObject.SetActive(false);
-                    gameController.GetComponent<GameController>().AddMoney(1);
-                    gameController.GetComponent<GameController>().PlayChaChing();
+                    gameController.AddMoney(1);
+                    gameController.PlayChaChing();
                 }
             }
         }

@@ -11,8 +11,8 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public GameObject lawnMower;
 
-    public AudioSource chaChing;
-    public AudioSource taskCompleteSound;
+    public AudioClip chaChing;
+    public AudioClip taskCompleteSound;
 
     private GameObject moneyLabel;
     private GameObject taskLabel;
@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
     private int taskIndex = 0;
 
     private bool isPaused = false;
-    private bool isRiding = false;
 
     private string[] tasks =
         { "Visit the item shop",
@@ -85,6 +84,11 @@ public class GameController : MonoBehaviour
             TogglePaused();
         }
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            IncrementTaskIndex();
+        }
+
 
         if (isPaused)
         {
@@ -102,7 +106,7 @@ public class GameController : MonoBehaviour
             pauseCanvas.SetActive(false);
         }
 
-        if (isRiding)
+        if (player.GetComponent<PlayerMovement>().IsRiding())
         {
             player.GetComponent<CharacterController>().enabled = false;
             Transform seat = lawnMower.transform.GetChild(6);
@@ -113,7 +117,7 @@ public class GameController : MonoBehaviour
             player.GetComponent<CharacterController>().enabled = true;
         }
 
-        string bradleyBuckDisplay = string.Format("{0:n0}", bradleyBucks) + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s");
+        string bradleyBuckDisplay = "$" + string.Format("{0:n0}", bradleyBucks) + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s");
         string conifersDisplay = taskIndex > 4 ? coniferCount + " Conifer" + (coniferCount == 1 ? "" : "s") : "";
         moneyLabel.GetComponent<TMP_Text>().SetText(bradleyBuckDisplay + "\n" + conifersDisplay);
 
@@ -160,7 +164,7 @@ public class GameController : MonoBehaviour
 
     public void PlayChaChing()
     {
-        chaChing.Play();
+        gameObject.GetComponent<AudioSource>().PlayOneShot(chaChing);
     }
 
     public int GetTaskIndex()
@@ -201,7 +205,7 @@ public class GameController : MonoBehaviour
 
     public void IncrementTaskIndex()
     {
-        taskCompleteSound.Play();
+        gameObject.GetComponent<AudioSource>().PlayOneShot(taskCompleteSound);
         taskIndex++;
     }
 
@@ -213,19 +217,5 @@ public class GameController : MonoBehaviour
     public bool IsPaused()
     {
         return isPaused;
-    }
-
-    public void ToggleRiding()
-    {
-        isRiding = !isRiding;
-        if (isRiding)
-        {
-
-        }
-    }
-
-    public bool IsRiding()
-    {
-        return isRiding;
     }
 }
