@@ -9,30 +9,31 @@ public class GameController : MonoBehaviour
     public GameObject pauseCanvas;
 
     public GameObject player;
+    public GameObject lawnMower;
 
-    public AudioClip chaChing;
-    public AudioClip taskCompleteSound;
+    public AudioSource chaChing;
+    public AudioSource taskCompleteSound;
 
     private GameObject moneyLabel;
     private GameObject taskLabel;
     private GameObject keybindLabel;
     private GameObject crosshair;
-    private AudioSource audioSource;
 
     private int bradleyBucks = 0;
     private int coniferCount = 0;
     private int taskIndex = 0;
 
-    private bool isPaused;
+    private bool isPaused = false;
+    private bool isRiding = false;
 
     private string[] tasks =
         { "Visit the item shop",
         "Collect $10BB in the abandoned house",
-        "Repair computer screens",
+        "Repair the computer screens",
         "Earn $15BB on the computer",
         "Buy an axe from the item shop",
         "Earn $200BB from chopping trees",
-        "Buy room decorations from the item shop",
+        "Buy room decorations",
         "Search the mountains for helpful items",
         "Open the neighbor's house",
 
@@ -70,7 +71,6 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         moneyLabel = labelsCanvas.transform.GetChild(0).gameObject;
         taskLabel = labelsCanvas.transform.GetChild(1).gameObject;
         keybindLabel = labelsCanvas.transform.GetChild(2).gameObject;
@@ -100,6 +100,17 @@ public class GameController : MonoBehaviour
             taskLabel.SetActive(true);
             crosshair.SetActive(true);
             pauseCanvas.SetActive(false);
+        }
+
+        if (isRiding)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+            Transform seat = lawnMower.transform.GetChild(6);
+            player.transform.position = new Vector3(seat.position.x, seat.position.y + 2, seat.position.z);
+        }
+        else
+        {
+            player.GetComponent<CharacterController>().enabled = true;
         }
 
         string bradleyBuckDisplay = string.Format("{0:n0}", bradleyBucks) + " Bradley Buck" + (bradleyBucks == 1 ? "" : "s");
@@ -149,8 +160,7 @@ public class GameController : MonoBehaviour
 
     public void PlayChaChing()
     {
-        audioSource.clip = chaChing;
-        audioSource.Play();
+        chaChing.Play();
     }
 
     public int GetTaskIndex()
@@ -191,8 +201,7 @@ public class GameController : MonoBehaviour
 
     public void IncrementTaskIndex()
     {
-        audioSource.clip = taskCompleteSound;
-        audioSource.Play();
+        taskCompleteSound.Play();
         taskIndex++;
     }
 
@@ -204,5 +213,19 @@ public class GameController : MonoBehaviour
     public bool IsPaused()
     {
         return isPaused;
+    }
+
+    public void ToggleRiding()
+    {
+        isRiding = !isRiding;
+        if (isRiding)
+        {
+
+        }
+    }
+
+    public bool IsRiding()
+    {
+        return isRiding;
     }
 }

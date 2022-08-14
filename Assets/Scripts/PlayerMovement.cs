@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
-    public GameObject gameController;
+    public GameObject lawnMower;
+    public GameObject gameControllerObject;
 
     public float walkingSpeed = 12f;
 
@@ -20,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+
+    private GameController gameController;
+    private CharacterController controller;
 
     private void OnEnable()
     {
@@ -44,55 +47,77 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        controller = gameObject.GetComponent<CharacterController>();
+        gameController = gameControllerObject.GetComponent<GameController>();
         speed = walkingSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameController.GetComponent<GameController>().IsPaused())
+        if (gameController.IsPaused())
         {
             return;
         }
 
-        // Create small invisible sphere
-        // If it collides with anything in the mask, isGrounded is set to true
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0)
+        if (!gameController.IsRiding())
         {
-            velocity.y = -2f;
-        }
+            // Create small invisible sphere
+            // If it collides with anything in the mask, isGrounded is set to true
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
 
-        Vector3 move = transform.right * x + transform.forward * z;
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
-        controller.Move(move * speed * Time.deltaTime);
+            Vector3 move = transform.right * x + transform.forward * z;
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
+            controller.Move(move * speed * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speed = walkingSpeed * 1.5f;
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                speed = walkingSpeed * 1.5f;
+            }
+            else
+            {
+                speed = walkingSpeed;
+            }
+
+            velocity.y += gravity * Time.deltaTime;
+
+            controller.Move(velocity * Time.deltaTime);
         }
         else
         {
-            speed = walkingSpeed;
+            // Create small invisible sphere
+            // If it collides with anything in the mask, isGrounded is set to true
+            isGrounded = Physics.CheckSphere(lawnMower.transform.GetChild(25).position, groundDistance, groundMask);
+
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
+
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = transform.right * x + transform.forward * z;
+
+            lawnMower.GetComponent<CharacterController>().Move(move * speed * Time.deltaTime);
+
+            velocity.y += gravity * Time.deltaTime;
+
+            lawnMower.GetComponent<CharacterController>().Move(velocity * Time.deltaTime);
         }
-
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
-    }
-
-    public void SetPos(float x, float y, float z)
-    {
-        
     }
 
     public void SetRotation(float x, float y, float z)

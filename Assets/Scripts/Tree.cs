@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Tree : MonoBehaviour
 {
-    public GameObject gameController;
+    public GameObject gameControllerObject;
     public AudioClip[] clips;
 
+    private GameController gameController;
     private List<TreeInstance> TreeInstances;
 
     void Start()
     {
-        gameObject.GetComponent<AudioSource>().Stop();
+        gameController = gameControllerObject.GetComponent<GameController>();
+
         if (!PlayerPrefs.HasKey("treesGenerated"))
         {
             Terrain.activeTerrain.GetComponent<TerrainCollider>().enabled = false;
@@ -33,7 +35,7 @@ public class Tree : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.GetComponent<GameController>().GetTaskIndex() >= 5)
+        if (gameController.GetTaskIndex() >= 5)
         {
             // Left click event
             if (Input.GetMouseButtonDown(0))
@@ -93,7 +95,7 @@ public class Tree : MonoBehaviour
                     Terrain.activeTerrain.GetComponent<TerrainCollider>().enabled = true;
                     Terrain.activeTerrain.Flush();
 
-                    gameController.GetComponent<GameController>().IncrementConiferCount();
+                    gameController.IncrementConiferCount();
                     PlaySound();
                 }
             }

@@ -1060,6 +1060,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212968178}
+  - component: {fileID: 212968179}
+  - component: {fileID: 212968180}
   m_Layer: 6
   m_Name: LawnMower
   m_TagString: Untagged
@@ -1104,9 +1106,43 @@ Transform:
   - {fileID: 433417331}
   - {fileID: 1871745032}
   - {fileID: 494279026}
+  - {fileID: 1005923913}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &212968179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212968177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024e13d8f5a604197aa5212f8d06e9c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameControllerObject: {fileID: 757051594}
+  player: {fileID: 1016430255}
+  keybindLabel: {fileID: 412560990}
+--- !u!143 &212968180
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212968177}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 1
+  m_SlopeLimit: 45
+  m_StepOffset: 1
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: -0.07, y: 13.6, z: 0}
 --- !u!1 &223711388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,8 +1971,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2788,7 +2824,7 @@ RectTransform:
   m_GameObject: {fileID: 528361822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2101317424}
@@ -4293,8 +4329,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4329,7 +4365,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 76.42493, w: 0}
+  m_margin: {x: 0, y: 0, z: 210.47537, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4354,6 +4390,7 @@ GameObject:
   - component: {fileID: 757051595}
   - component: {fileID: 757051596}
   - component: {fileID: 757051597}
+  - component: {fileID: 757051598}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -4391,8 +4428,9 @@ MonoBehaviour:
   labelsCanvas: {fileID: 2101317423}
   pauseCanvas: {fileID: 2138018595}
   player: {fileID: 1016430255}
-  chaChing: {fileID: 8300000, guid: 3129e0dad33cd43839867e9269835d1c, type: 3}
-  taskCompleteSound: {fileID: 8300000, guid: efb234dbed4524913b28e1d3b8e05a1c, type: 3}
+  lawnMower: {fileID: 212968177}
+  chaChing: {fileID: 757051597}
+  taskCompleteSound: {fileID: 757051598}
 --- !u!82 &757051597
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4403,7 +4441,103 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3129e0dad33cd43839867e9269835d1c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &757051598
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757051594}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: efb234dbed4524913b28e1d3b8e05a1c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -6716,6 +6850,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300028, guid: c70032afc7e2f214c8b20d1e445fb365, type: 3}
+--- !u!1 &1005923912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1005923913}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1005923913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005923912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 12.71, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 212968178}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1011587803
 GameObject:
   m_ObjectHideFlags: 0
@@ -6836,8 +7001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d92cfb1d4ce45609995c8f03a97486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1016430256}
-  gameController: {fileID: 757051594}
+  lawnMower: {fileID: 212968177}
+  gameControllerObject: {fileID: 757051594}
   walkingSpeed: 12
   gravity: -29.43
   jumpHeight: 3
@@ -8022,7 +8187,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Task: Visit the item shop'
+  m_text: 'Task: Collect $10BB in the abandoned house'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8049,8 +8214,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8085,7 +8250,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 54.132202, y: 0, z: 26.895996, w: 0}
+  m_margin: {x: 3.2485504, y: 0, z: 26.895996, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -11528,6 +11693,7 @@ GameObject:
   - component: {fileID: 2037124237}
   - component: {fileID: 2037124236}
   - component: {fileID: 2037124240}
+  - component: {fileID: 2037124241}
   - component: {fileID: 2037124239}
   m_Layer: 6
   m_Name: Terrain
@@ -11607,7 +11773,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -11704,7 +11870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63abe6beb6e74d5c9b16fee8a9b98f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 757051594}
+  gameControllerObject: {fileID: 757051594}
   clips:
   - {fileID: 8300000, guid: 043cf9ad8965b4823917b0bb5325f322, type: 3}
   - {fileID: 8300000, guid: b1bfa26b815354c12a00ac5cb3916a7b, type: 3}
@@ -11712,6 +11878,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9dd2481f4d64744ddad82e374b3a461c, type: 3}
   - {fileID: 8300000, guid: 9891a84fdac32421399bf7e7095d3148, type: 3}
   - {fileID: 8300000, guid: cca58b33c9df241b8936495e667f11ec, type: 3}
+--- !u!114 &2037124241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037124235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d4e98a5692b4b2a8f3c39179e0836e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1016430255}
+  gameControllerObject: {fileID: 757051594}
+  detailCountPerDetailPixel: 2
+  affectedTextureIndex: 0
 --- !u!1 &2041423413
 GameObject:
   m_ObjectHideFlags: 0
