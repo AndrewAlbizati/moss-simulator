@@ -124,7 +124,7 @@ public class BaseballController : MonoBehaviour
         for (int i = 1; i < 10; i++)
         {
             // Simulate balls and strikes
-            for (int j = 0; j < 200; j++)
+            for (int j = 0; j < 100; j++)
             {
                 DateTime before = DateTime.Now;
                 SimulateTick();
@@ -175,7 +175,7 @@ public class BaseballController : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().onThirdBase = false;
 
             // Simulate balls and strikes
-            for (int j = 0; j < 200; j++)
+            for (int j = 0; j < 100; j++)
             {
                 DateTime before = DateTime.Now;
                 SimulateTick();
@@ -250,35 +250,35 @@ public class BaseballController : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().ResetStrikes();
         }
 
-
-        if (UnityEngine.Random.Range(0, 10) == 0)
+        int rand = UnityEngine.Random.Range(0, 50);
+        if (rand <= 5)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementBalls();
         }
 
-        if (UnityEngine.Random.Range(0, 10) == 0)
+        if (rand > 5 && rand <= 10)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementStrikes();
         }
 
-        if (UnityEngine.Random.Range(0, 100) == 0)
+        if (rand > 10 && rand <= 15)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementOuts();
         }
 
 
 
-        if (UnityEngine.Random.Range(0, 100) == 0)
+        if (rand == 30)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleFirstBase();
         }
 
-        if (UnityEngine.Random.Range(0, 100) == 0)
+        if (rand == 31)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleSecondBase();
         }
 
-        if (UnityEngine.Random.Range(0, 100) == 0)
+        if (rand == 32)
         {
             scoreboard.GetComponent<Scoreboard>().ToggleThirdBase();
         }
