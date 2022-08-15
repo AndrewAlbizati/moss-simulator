@@ -12,12 +12,15 @@ public class Key : MonoBehaviour
     private GameController gameController;
 
     private bool isVisible = false;
-    private string text = "Press B to pickup key";
+    private string text;
 
     // Start is called before the first frame update
     void Start()
     {
         gameController = gameControllerObject.GetComponent<GameController>();
+
+        text = "Press " + gameController.actionKey.ToString() + " to pickup key";
+
         if (PlayerPrefs.HasKey("keyPickedUp"))
         {
             gameObject.SetActive(false);
@@ -60,7 +63,7 @@ public class Key : MonoBehaviour
             if (gameController.GetTaskIndex() >= 7)
             {
                 keybindLabel.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.B))
+                if (Input.GetKeyDown(gameController.actionKey))
                 {
                     gameController.IncrementTaskIndex();
 

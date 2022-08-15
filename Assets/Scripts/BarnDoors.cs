@@ -8,23 +8,22 @@ public class BarnDoors : MonoBehaviour
     public GameObject player;
     public GameObject keybindLabel;
     public GameObject gameControllerObject;
-    public AudioClip creakingSound;
 
     private AudioSource audioSource;
     private GameController gameController;
     private GameObject leftDoor;
     private GameObject rightDoor;
 
-    private string text = "Press B to open door";
+    private string text;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = creakingSound;
-        audioSource.Stop();
-        
         gameController = gameControllerObject.GetComponent<GameController>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+
+        text = "Press " + gameController.actionKey.ToString() + " to open door";
+
         leftDoor = gameObject.transform.GetChild(0).gameObject;
         rightDoor = gameObject.transform.GetChild(1).gameObject;
 
@@ -66,7 +65,7 @@ public class BarnDoors : MonoBehaviour
             if (gameController.GetTaskIndex() == 8)
             {
                 keybindLabel.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.B))
+                if (Input.GetKeyDown(gameController.actionKey))
                 {
                     StartCoroutine(OpenDoors());
                     gameController.IncrementTaskIndex();

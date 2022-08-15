@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 200f;
 
     public Transform playerBody;
     public GameObject gameController;
 
     float xRotation = 0f;
+
+    private void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("sensitivity"))
+        {
+            mouseSensitivity = PlayerPrefs.GetFloat("sensitivity");
+        }
+        else
+        {
+            mouseSensitivity = 200f;
+        }
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetFloat("sensitivity", mouseSensitivity);
+    }
 
     // Start is called before the first frame update
     void Start()

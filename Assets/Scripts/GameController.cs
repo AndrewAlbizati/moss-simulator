@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public KeyCode actionKey;
+
     public GameObject labelsCanvas;
     public GameObject pauseCanvas;
 
@@ -49,6 +51,7 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("money", bradleyBucks);
         PlayerPrefs.SetInt("conifers", coniferCount);
         PlayerPrefs.SetInt("taskindex", taskIndex);
+        PlayerPrefs.SetString("actionKeybind", actionKey.ToString());
     }
 
     void OnEnable()
@@ -64,6 +67,15 @@ public class GameController : MonoBehaviour
             bradleyBucks = 0;
             coniferCount = 0;
             taskIndex = 0;
+        }
+
+        if (PlayerPrefs.HasKey("actionKeybind"))
+        {
+            actionKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("actionKeybind"));
+        }
+        else
+        {
+            actionKey = KeyCode.E;
         }
     }
 

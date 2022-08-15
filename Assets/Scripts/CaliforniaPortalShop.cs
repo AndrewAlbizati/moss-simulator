@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class CaliforniaPortalShop : MonoBehaviour
 {
-    public GameObject gameController;
+    public GameObject gameControllerObject;
     public GameObject player;
     public GameObject keybindLabel;
     public GameObject californiaPortal;
 
-    private string text = "Press B to buy for $100,000 Bradley Bucks";
+    private GameController gameController;
+    private string text;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(true);
+        gameController = gameControllerObject.GetComponent<GameController>();
+        text = "Press " + gameController.actionKey.ToString() + " to buy for $100,000 Bradley Bucks";
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class CaliforniaPortalShop : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
-            if (gameController.GetComponent<GameController>().GetBradleyBucks() >= 100000)
+            if (gameController.GetBradleyBucks() >= 100000)
             {
                 float playerX = player.transform.position.x;
                 float playerZ = player.transform.position.z;
@@ -38,13 +40,13 @@ public class CaliforniaPortalShop : MonoBehaviour
                     mText.SetText(text);
                     keybindLabel.SetActive(true);
 
-                    if (Input.GetKeyDown(KeyCode.B))
+                    if (Input.GetKeyDown(gameController.actionKey))
                     {
                         keybindLabel.SetActive(false);
                         californiaPortal.SetActive(true);
                         gameObject.SetActive(false);
-                        gameController.GetComponent<GameController>().IncrementTaskIndex();
-                        gameController.GetComponent<GameController>().SpendMoney(100000);
+                        gameController.IncrementTaskIndex();
+                        gameController.SpendMoney(100000);
                     }
                 }
                 else if (keybindLabel.GetComponent<TMP_Text>().text == text)

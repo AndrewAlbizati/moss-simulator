@@ -7,14 +7,17 @@ using UnityEngine;
 public class GamingSetup : MonoBehaviour
 {
     public GameObject player;
+    public GameObject gameControllerObject;
     public GameObject keybindLabel;
 
-    private string text = "Press B to gamble on MLB Games";
+    private string text;
+    private GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameController = gameControllerObject.GetComponent<GameController>();
+        text = "Press " + gameController.actionKey.ToString() + " to gamble on MLB Games";
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class GamingSetup : MonoBehaviour
                 mText.SetText(text);
                 keybindLabel.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.B))
+                if (Input.GetKeyDown(gameController.actionKey))
                 {
                     SceneManager.LoadScene("Baseball");
                 }

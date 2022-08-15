@@ -8,9 +8,16 @@ public class MainMenu : MonoBehaviour
     private AudioSource titleScreenMusic;
     private bool buttonClicked = false;
 
+    private static bool initDone = false;
+
     void Start()
     {
-        PlayerPrefs.DeleteAll();
+        if (initDone == false)
+        {
+            initDone = true;
+            PlayerPrefs.DeleteAll();
+        }
+
         titleScreenMusic = gameObject.GetComponent<AudioSource>();
         titleScreenMusic.Play();
     }
@@ -38,10 +45,11 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void ShowCredits()
+    public void ShowOptions()
     {
         buttonClicked = true;
         titleScreenMusic.Stop();
-        SceneManager.LoadScene("Credits");
+        PlayerPrefs.SetString("previousScene", "Menu");
+        SceneManager.LoadScene("Options");
     }
 }

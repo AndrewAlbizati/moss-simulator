@@ -10,20 +10,16 @@ public class Shop : MonoBehaviour
     public GameObject screen2;
     public GameObject decorations;
     public GameObject keybindLabel;
-    public GameObject gameController;
+    public GameObject gameControllerObject;
 
     public Material[] materials;
 
-
+    private GameController gameController;
     private bool hasScreens = false;
     private bool hasDecorations = false;
 
-    private readonly string[] texts =
-    {
-        "Press B to buy for $10 Bradley Bucks",
-        "Press B to buy for $15 Bradley Bucks",
-        "Press B to buy for $200 Bradley Bucks",
-    };
+    private string[] texts;
+    
 
     private int[] prices = { 10, 15, 200 };
 
@@ -63,6 +59,14 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameController = gameControllerObject.GetComponent<GameController>();
+
+        texts = new string[] {
+            "Press " + gameController.actionKey.ToString() + " to buy for $10 Bradley Bucks",
+            "Press " + gameController.actionKey.ToString() + " to buy for $15 Bradley Bucks",
+            "Press " + gameController.actionKey.ToString() + " to buy for $200 Bradley Bucks",
+        };
+
         screen1.SetActive(false);
         screen2.SetActive(false);
         decorations.SetActive(false);
@@ -90,15 +94,15 @@ public class Shop : MonoBehaviour
             TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
             mText.SetText(texts[shopIndex]);
 
-            if (gameController.GetComponent<GameController>().GetBradleyBucks() >= prices[shopIndex])
+            if (gameController.GetBradleyBucks() >= prices[shopIndex])
             {
                 switch (shopIndex)
                 {
                     case 0:
-                        if (gameController.GetComponent<GameController>().GetTaskIndex() == 2)
+                        if (gameController.GetTaskIndex() == 2)
                         {
                             keybindLabel.SetActive(true);
-                            if (Input.GetKeyDown(KeyCode.B))
+                            if (Input.GetKeyDown(gameController.actionKey))
                             {
                                 keybindLabel.SetActive(false);
                                 screen1.SetActive(true);
@@ -106,51 +110,42 @@ public class Shop : MonoBehaviour
                                 hasScreens = true;
 
 
-                                gameController.GetComponent<GameController>().IncrementTaskIndex();
-                                gameController.GetComponent<GameController>().SpendMoney(prices[shopIndex]);
+                                gameController.IncrementTaskIndex();
+                                gameController.SpendMoney(prices[shopIndex]);
 
                                 shopIndex++;
                                 UpdateMaterial();
-                                /*gameController.GetComponent<GameController>().AddMoney(15);
-                                gameController.GetComponent<GameController>().IncrementTaskIndex();*/
                             }
                         }
                         break;
                     case 1:
-                        if (gameController.GetComponent<GameController>().GetTaskIndex() == 4)
+                        if (gameController.GetTaskIndex() == 4)
                         {
                             keybindLabel.SetActive(true);
-                            if (Input.GetKeyDown(KeyCode.B))
+                            if (Input.GetKeyDown(gameController.actionKey))
                             {
                                 keybindLabel.SetActive(false);
 
-                                gameController.GetComponent<GameController>().IncrementTaskIndex();
-                                gameController.GetComponent<GameController>().SpendMoney(prices[shopIndex]);
+                                gameController.IncrementTaskIndex();
+                                gameController.SpendMoney(prices[shopIndex]);
 
                                 shopIndex++;
                                 UpdateMaterial();
-
-
-                                /*gameController.GetComponent<GameController>().AddMoney(200);
-                                gameController.GetComponent<GameController>().IncrementTaskIndex();*/
                             }
                         }
                         break;
                     case 2:
-                        if (gameController.GetComponent<GameController>().GetTaskIndex() == 6)
+                        if (gameController.GetTaskIndex() == 6)
                         {
                             keybindLabel.SetActive(true);
-                            if (Input.GetKeyDown(KeyCode.B))
+                            if (Input.GetKeyDown(gameController.actionKey))
                             {
                                 keybindLabel.SetActive(false);
                                 decorations.SetActive(true);
                                 hasDecorations = true;
 
-                                gameController.GetComponent<GameController>().IncrementTaskIndex();
-                                gameController.GetComponent<GameController>().SpendMoney(prices[shopIndex]);
-
-                                /*shopIndex++;
-                                UpdateMaterial();*/
+                                gameController.IncrementTaskIndex();
+                                gameController.SpendMoney(prices[shopIndex]);
                             }
                         }
                         break;

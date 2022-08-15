@@ -11,8 +11,8 @@ public class LawnMower : MonoBehaviour
     public GameObject keybindLabel;
 
     private GameController gameController;
-    private string rideText = "Press B to ride on lawn mower";
-    private string dismountText = "Press B to dismount lawn mower";
+    private string rideText;
+    private string dismountText;
 
     private void OnDisable()
     {
@@ -38,6 +38,8 @@ public class LawnMower : MonoBehaviour
     void Start()
     {
         gameController = gameControllerObject.GetComponent<GameController>();
+        rideText = "Press " + gameController.actionKey.ToString() + " to ride on lawn mower";
+        dismountText = "Press " + gameController.actionKey.ToString() + " to dismount lawn mower";
     }
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class LawnMower : MonoBehaviour
                 mText.SetText(player.GetComponent<PlayerMovement>().IsRiding() ? dismountText : rideText);
                 keybindLabel.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.B))
+                if (Input.GetKeyDown(gameController.actionKey))
                 {
                     player.GetComponent<PlayerMovement>().ToggleRiding();
                 }
