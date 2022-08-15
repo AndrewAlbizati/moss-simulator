@@ -175,7 +175,7 @@ public class BaseballController : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().onThirdBase = false;
 
             // Simulate balls and strikes
-            for (int j = 0; j < 200; j++)
+            for (int j = 0; j < 400; j++)
             {
                 DateTime before = DateTime.Now;
                 SimulateTick();
