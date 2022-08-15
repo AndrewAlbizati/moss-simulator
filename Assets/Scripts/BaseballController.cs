@@ -261,7 +261,7 @@ public class BaseballController : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().IncrementStrikes();
         }
 
-        if (rand > 10 && rand <= 15)
+        if (rand == 40)
         {
             scoreboard.GetComponent<Scoreboard>().IncrementOuts();
         }
