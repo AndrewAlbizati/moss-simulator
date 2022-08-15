@@ -123,21 +123,22 @@ public class BaseballController : MonoBehaviour
         // Simulate 9 innings
         for (int i = 1; i < 10; i++)
         {
+            DateTime beforeFirst = DateTime.Now;
             // Simulate balls and strikes
             for (int j = 0; j < 100; j++)
             {
-                DateTime before = DateTime.Now;
                 SimulateTick();
                 if (scoreboard.GetComponent<Scoreboard>().outs == 3)
                 {
                     break;
                 }
-                DateTime after = DateTime.Now;
 
-                if (after.Subtract(before).Seconds < 0.01f)
+                if (DateTime.Now.Subtract(beforeFirst).Seconds > 1f)
                 {
-                    yield return new WaitForSeconds(0.01f - after.Subtract(before).Seconds);
+                    break;
                 }
+
+                yield return new WaitForSeconds(0.01f);
             }
 
 
@@ -174,21 +175,22 @@ public class BaseballController : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().onSecondBase = false;
             scoreboard.GetComponent<Scoreboard>().onThirdBase = false;
 
+            DateTime beforeSecond = DateTime.Now;
             // Simulate balls and strikes
-            for (int j = 0; j < 400; j++)
+            for (int j = 0; j < 100; j++)
             {
-                DateTime before = DateTime.Now;
                 SimulateTick();
                 if (scoreboard.GetComponent<Scoreboard>().outs == 3)
                 {
                     break;
                 }
-                DateTime after = DateTime.Now;
 
-                if (after.Subtract(before).Seconds < 0.01f)
+                if (DateTime.Now.Subtract(beforeSecond).Seconds > 1f)
                 {
-                    yield return new WaitForSeconds(0.01f - after.Subtract(before).Seconds);
+                    break;
                 }
+
+                yield return new WaitForSeconds(0.01f);
             }
 
 

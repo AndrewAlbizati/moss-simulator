@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private AudioSource titleScreenMusic;
+    private bool buttonClicked = false;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         // Loop the title screen music
-        if (!titleScreenMusic.isPlaying)
+        if (!buttonClicked && !titleScreenMusic.isPlaying)
         {
             titleScreenMusic.Play();
         }
@@ -25,18 +26,21 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        buttonClicked = true;
         titleScreenMusic.Stop();
         SceneManager.LoadScene("Ohio");
     }
 
     public void QuitGame()
     {
+        buttonClicked = true;
         titleScreenMusic.Stop();
         Application.Quit();
     }
 
     public void ShowCredits()
     {
+        buttonClicked = true;
         titleScreenMusic.Stop();
         SceneManager.LoadScene("Credits");
     }
