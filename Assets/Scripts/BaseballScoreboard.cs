@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class Scoreboard : MonoBehaviour
+public class BaseballScoreboard : MonoBehaviour
 {
     [Header("Team Settings")]
     public int awayScore = 0;

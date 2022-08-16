@@ -1,0 +1,214 @@
+{
+    "teams": [
+        {
+            "name": "Hawks",
+            "city": "Atlanta",
+            "abbreviation": "ATL",
+            "rate": 0.378,
+            "ppg": 110.2
+        },
+        {
+            "name": "Celtics",
+            "city": "Boston",
+            "abbreviation": "BOS",
+            "rate": 0.585,
+            "ppg": 111.4
+        },
+        {
+            "name": "Nets",
+            "city": "Brooklyn",
+            "abbreviation": "BKN",
+            "rate": 0.558,
+            "ppg": 115.1
+        },
+        {
+            "name": "Hornets",
+            "city": "Charlotte",
+            "abbreviation": "CHA",
+            "rate": 0.5,
+            "ppg": 116.9
+        },
+        {
+            "name": "Bulls",
+            "city": "Chicago",
+            "abbreviation": "CHI",
+            "rate": 0.455,
+            "ppg": 108.4
+        },
+        {
+            "name": "Cavaliers",
+            "city": "Cleveland",
+            "abbreviation": "CLE",
+            "rate": 0.595,
+            "ppg": 107.9
+        },
+        {
+            "name": "Mavericks",
+            "city": "Dallas",
+            "abbreviation": "DAL",
+            "rate": 0.51,
+            "ppg": 107.4
+        },
+        {
+            "name": "Nuggets",
+            "city": "Denver",
+            "abbreviation": "DEN",
+            "rate": 0.568,
+            "ppg": 110.2
+        },
+        {
+            "name": "Pistons",
+            "city": "Detroit",
+            "abbreviation": "DET",
+            "rate": 0.244,
+            "ppg": 104.6
+        },
+        {
+            "name": "Warriors",
+            "city": "Golden State",
+            "abbreviation": "GSW",
+            "rate": 0.529,
+            "ppg": 108.8
+        },
+        {
+            "name": "Rockets",
+            "city": "Houston",
+            "abbreviation": "HOU",
+            "rate": 0.22,
+            "ppg": 107.5
+        },
+        {
+            "name": "Pacers",
+            "city": "Indiana",
+            "abbreviation": "IND",
+            "rate": 0.22,
+            "ppg": 108.7
+        },
+        {
+            "name": "Clippers",
+            "city": "Los Angeles",
+            "abbreviation": "LAC",
+            "rate": 0.405,
+            "ppg": 106.9
+        },
+        {
+            "name": "Lakers",
+            "city": "Los Angeles",
+            "abbreviation": "LAL",
+            "rate": 0.293,
+            "ppg": 111.8
+        },
+        {
+            "name": "Grizzlies",
+            "city": "Memphis",
+            "abbreviation": "MEM",
+            "rate": 0.596,
+            "ppg": 113.0
+        },
+        {
+            "name": "Heat",
+            "city": "Miami",
+            "abbreviation": "MIA",
+            "rate": 0.571,
+            "ppg": 107.9
+        },
+        {
+            "name": "Bucks",
+            "city": "Milwuakee",
+            "abbreviation": "MIL",
+            "rate": 0.596,
+            "ppg": 113.9
+        },
+        {
+            "name": "Timberwolves",
+            "city": "Minnesota",
+            "abbreviation": "MIN",
+            "rate": 0.477,
+            "ppg": 118
+        },
+        {
+            "name": "Pelicans",
+            "city": "New Orleans",
+            "abbreviation": "NOP",
+            "rate": 0.422,
+            "ppg": 107.2
+        },
+        {
+            "name": "Knicks",
+            "city": "New York",
+            "abbreviation": "NYK",
+            "rate": 0.488,
+            "ppg": 107.0
+        },
+        {
+            "name": "Thunder",
+            "city": "Oklahoma City",
+            "abbreviation": "OKC",
+            "rate": 0.293,
+            "ppg": 102.8
+        },
+        {
+            "name": "Magic",
+            "city": "Orlando",
+            "abbreviation": "ORL",
+            "rate": 0.244,
+            "ppg": 104.2
+        },
+        {
+            "name": "76ers",
+            "city": "Philidelphia",
+            "abbreviation": "PHI",
+            "rate": 0.617,
+            "ppg": 108.8
+        },
+        {
+            "name": "Suns",
+            "city": "Phoenix",
+            "abbreviation": "PHX",
+            "rate": 0.723,
+            "ppg": 112.7
+        },
+        {
+            "name": "Trail Blazers",
+            "city": "Portland",
+            "abbreviation": "POR",
+            "rate": 0.244,
+            "ppg": 103.7
+        },
+        {
+            "name": "Kings",
+            "city": "Sacramento",
+            "abbreviation": "SAC",
+            "rate": 0.342,
+            "ppg": 110.3
+        },
+        {
+            "name": "Spurs",
+            "city": "San Antonio",
+            "abbreviation": "SAS",
+            "rate": 0.429,
+            "ppg": 112.5
+        },
+        {
+            "name": "Raptors",
+            "city": "Toronto",
+            "abbreviation": "TOR",
+            "rate": 0.568,
+            "ppg": 107.5
+        },
+        {
+            "name": "Jazz",
+            "city": "Utah",
+            "abbreviation": "UTA",
+            "rate": 0.477,
+            "ppg": 109.3
+        },
+        {
+            "name": "Wizards",
+            "city": "Washington",
+            "abbreviation": "WSH",
+            "rate": 0.342,
+            "ppg": 105.3
+        }
+    ]
+}

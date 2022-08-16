@@ -29,16 +29,23 @@ public class GameController : MonoBehaviour
 
     private string[] tasks =
         { "Visit the item shop",
+
         "Collect $10BB in the abandoned house",
         "Repair the computer screens",
+
         "Earn $15BB on the computer",
         "Buy an axe from the item shop",
+
         "Earn $200BB from chopping trees",
         "Buy room decorations",
+
         "Search the mountains for helpful items",
         "Open the neighbor's house",
 
+        "Earn $500",
         "Buy NBA League Pass",
+
+        "Earn $",
         "Buy NFL+",
 
 
@@ -162,6 +169,12 @@ public class GameController : MonoBehaviour
                 break;
             case 5:
                 if (bradleyBucks >= 200)
+                {
+                    IncrementTaskIndex();
+                }
+                break;
+            case 9:
+                if (bradleyBucks >= 500)
                 {
                     IncrementTaskIndex();
                 }

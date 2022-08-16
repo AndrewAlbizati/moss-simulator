@@ -22,9 +22,9 @@ public class ComputerController : MonoBehaviour
 
         int taskIndex = PlayerPrefs.GetInt("taskindex");
 
-        nbaButton.GetComponent<Button>().interactable = taskIndex > 9;
+        nbaButton.GetComponent<Button>().interactable = taskIndex > 10;
 
-        nflButton.GetComponent<Button>().interactable = taskIndex > 10;
+        nflButton.GetComponent<Button>().interactable = taskIndex > 12;
     }
 
     // Update is called once per frame

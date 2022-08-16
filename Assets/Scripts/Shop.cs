@@ -21,7 +21,7 @@ public class Shop : MonoBehaviour
     private string[] texts;
     
 
-    private int[] prices = { 10, 15, 200 };
+    private int[] prices = { 10, 15, 200, 500 };
 
     private int shopIndex = 0;
 
@@ -65,6 +65,7 @@ public class Shop : MonoBehaviour
             "Press " + gameController.actionKey.ToString() + " to buy for $10 Bradley Bucks",
             "Press " + gameController.actionKey.ToString() + " to buy for $15 Bradley Bucks",
             "Press " + gameController.actionKey.ToString() + " to buy for $200 Bradley Bucks",
+            "Press " + gameController.actionKey.ToString() + " to buy for $500 Bradley Bucks",
         };
 
         screen1.SetActive(false);
@@ -146,6 +147,25 @@ public class Shop : MonoBehaviour
 
                                 gameController.IncrementTaskIndex();
                                 gameController.SpendMoney(prices[shopIndex]);
+
+                                shopIndex++;
+                                UpdateMaterial();
+                            }
+                        }
+                        break;
+                    case 3:
+                        if (gameController.GetTaskIndex() == 10)
+                        {
+                            keybindLabel.SetActive(true);
+                            if (Input.GetKeyDown(gameController.actionKey))
+                            {
+                                keybindLabel.SetActive(false);
+
+                                gameController.IncrementTaskIndex();
+                                gameController.SpendMoney(prices[shopIndex]);
+
+                                shopIndex++;
+                                UpdateMaterial();
                             }
                         }
                         break;

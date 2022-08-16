@@ -104,9 +104,9 @@ public class BaseballController : MonoBehaviour
         audioSource.clip = baseballMusic;
         audioSource.Play();
 
-        scoreboard.GetComponent<Scoreboard>().Reset();
-        scoreboard.GetComponent<Scoreboard>().SetAwayTeam(awayTeam.abbreviation);
-        scoreboard.GetComponent<Scoreboard>().SetHomeTeam(homeTeam.abbreviation);
+        scoreboard.GetComponent<BaseballScoreboard>().Reset();
+        scoreboard.GetComponent<BaseballScoreboard>().SetAwayTeam(awayTeam.abbreviation);
+        scoreboard.GetComponent<BaseballScoreboard>().SetHomeTeam(homeTeam.abbreviation);
 
 
         int awayScore;
@@ -128,7 +128,7 @@ public class BaseballController : MonoBehaviour
             for (int j = 0; j < 100; j++)
             {
                 SimulateTick();
-                if (scoreboard.GetComponent<Scoreboard>().outs == 3)
+                if (scoreboard.GetComponent<BaseballScoreboard>().outs == 3)
                 {
                     break;
                 }
@@ -145,42 +145,42 @@ public class BaseballController : MonoBehaviour
             // Add away score
             if (UnityEngine.Random.Range(0, 2) == 0 && awayScore > 0)
             {
-                scoreboard.GetComponent<Scoreboard>().IncrementAwayScore();
+                scoreboard.GetComponent<BaseballScoreboard>().IncrementAwayScore();
                 awayScore--;
             }
             if (i == 9)
             {
                 for (int j = 0; j < awayScore; j++)
                 {
-                    scoreboard.GetComponent<Scoreboard>().IncrementAwayScore();
+                    scoreboard.GetComponent<BaseballScoreboard>().IncrementAwayScore();
                 }
             }
 
-            scoreboard.GetComponent<Scoreboard>().strikes = 3;
-            scoreboard.GetComponent<Scoreboard>().outs = 3;
-            scoreboard.GetComponent<Scoreboard>().balls = UnityEngine.Random.Range(0, 4);
+            scoreboard.GetComponent<BaseballScoreboard>().strikes = 3;
+            scoreboard.GetComponent<BaseballScoreboard>().outs = 3;
+            scoreboard.GetComponent<BaseballScoreboard>().balls = UnityEngine.Random.Range(0, 4);
 
             // End game if home team is up at the middle of the 9th
-            if (i == 9 && scoreboard.GetComponent<Scoreboard>().homeScore > scoreboard.GetComponent<Scoreboard>().awayScore)
+            if (i == 9 && scoreboard.GetComponent<BaseballScoreboard>().homeScore > scoreboard.GetComponent<BaseballScoreboard>().awayScore)
             {
                 break;
             }
 
-            scoreboard.GetComponent<Scoreboard>().IncrementInning();
-            scoreboard.GetComponent<Scoreboard>().ResetBalls();
-            scoreboard.GetComponent<Scoreboard>().ResetStrikes();
-            scoreboard.GetComponent<Scoreboard>().ResetOuts();
+            scoreboard.GetComponent<BaseballScoreboard>().IncrementInning();
+            scoreboard.GetComponent<BaseballScoreboard>().ResetBalls();
+            scoreboard.GetComponent<BaseballScoreboard>().ResetStrikes();
+            scoreboard.GetComponent<BaseballScoreboard>().ResetOuts();
 
-            scoreboard.GetComponent<Scoreboard>().onFirstBase = false;
-            scoreboard.GetComponent<Scoreboard>().onSecondBase = false;
-            scoreboard.GetComponent<Scoreboard>().onThirdBase = false;
+            scoreboard.GetComponent<BaseballScoreboard>().onFirstBase = false;
+            scoreboard.GetComponent<BaseballScoreboard>().onSecondBase = false;
+            scoreboard.GetComponent<BaseballScoreboard>().onThirdBase = false;
 
             DateTime beforeSecond = DateTime.Now;
             // Simulate balls and strikes
             for (int j = 0; j < 100; j++)
             {
                 SimulateTick();
-                if (scoreboard.GetComponent<Scoreboard>().outs == 3)
+                if (scoreboard.GetComponent<BaseballScoreboard>().outs == 3)
                 {
                     break;
                 }
@@ -197,31 +197,31 @@ public class BaseballController : MonoBehaviour
             // Add home score
             if (UnityEngine.Random.Range(0, 2) == 0 && homeScore > 0)
             {
-                scoreboard.GetComponent<Scoreboard>().IncrementHomeScore();
+                scoreboard.GetComponent<BaseballScoreboard>().IncrementHomeScore();
                 homeScore--;
             }
             if (i == 9)
             {
                 for (int j = 0; j < homeScore; j++)
                 {
-                    scoreboard.GetComponent<Scoreboard>().IncrementHomeScore();
+                    scoreboard.GetComponent<BaseballScoreboard>().IncrementHomeScore();
                 }
             }
 
-            scoreboard.GetComponent<Scoreboard>().strikes = 3;
-            scoreboard.GetComponent<Scoreboard>().outs = 3;
-            scoreboard.GetComponent<Scoreboard>().balls = UnityEngine.Random.Range(0, 4);
+            scoreboard.GetComponent<BaseballScoreboard>().strikes = 3;
+            scoreboard.GetComponent<BaseballScoreboard>().outs = 3;
+            scoreboard.GetComponent<BaseballScoreboard>().balls = UnityEngine.Random.Range(0, 4);
    
             if (i != 9)
             {
-                scoreboard.GetComponent<Scoreboard>().IncrementInning();
-                scoreboard.GetComponent<Scoreboard>().ResetBalls();
-                scoreboard.GetComponent<Scoreboard>().ResetStrikes();
-                scoreboard.GetComponent<Scoreboard>().ResetOuts();
+                scoreboard.GetComponent<BaseballScoreboard>().IncrementInning();
+                scoreboard.GetComponent<BaseballScoreboard>().ResetBalls();
+                scoreboard.GetComponent<BaseballScoreboard>().ResetStrikes();
+                scoreboard.GetComponent<BaseballScoreboard>().ResetOuts();
 
-                scoreboard.GetComponent<Scoreboard>().onFirstBase = false;
-                scoreboard.GetComponent<Scoreboard>().onSecondBase = false;
-                scoreboard.GetComponent<Scoreboard>().onThirdBase = false;
+                scoreboard.GetComponent<BaseballScoreboard>().onFirstBase = false;
+                scoreboard.GetComponent<BaseballScoreboard>().onSecondBase = false;
+                scoreboard.GetComponent<BaseballScoreboard>().onThirdBase = false;
             }
         }
 
@@ -242,47 +242,47 @@ public class BaseballController : MonoBehaviour
 
     void SimulateTick()
     {
-        if (scoreboard.GetComponent<Scoreboard>().balls == 4)
+        if (scoreboard.GetComponent<BaseballScoreboard>().balls == 4)
         {
-            scoreboard.GetComponent<Scoreboard>().ResetBalls();
+            scoreboard.GetComponent<BaseballScoreboard>().ResetBalls();
         }
 
-        if (scoreboard.GetComponent<Scoreboard>().strikes == 3)
+        if (scoreboard.GetComponent<BaseballScoreboard>().strikes == 3)
         {
-            scoreboard.GetComponent<Scoreboard>().ResetStrikes();
+            scoreboard.GetComponent<BaseballScoreboard>().ResetStrikes();
         }
 
         int rand = UnityEngine.Random.Range(0, 50);
         if (rand <= 5)
         {
-            scoreboard.GetComponent<Scoreboard>().IncrementBalls();
+            scoreboard.GetComponent<BaseballScoreboard>().IncrementBalls();
         }
 
         if (rand > 5 && rand <= 10)
         {
-            scoreboard.GetComponent<Scoreboard>().IncrementStrikes();
+            scoreboard.GetComponent<BaseballScoreboard>().IncrementStrikes();
         }
 
         if (rand == 40)
         {
-            scoreboard.GetComponent<Scoreboard>().IncrementOuts();
+            scoreboard.GetComponent<BaseballScoreboard>().IncrementOuts();
         }
 
 
 
         if (rand == 30)
         {
-            scoreboard.GetComponent<Scoreboard>().ToggleFirstBase();
+            scoreboard.GetComponent<BaseballScoreboard>().ToggleFirstBase();
         }
 
         if (rand == 31)
         {
-            scoreboard.GetComponent<Scoreboard>().ToggleSecondBase();
+            scoreboard.GetComponent<BaseballScoreboard>().ToggleSecondBase();
         }
 
         if (rand == 32)
         {
-            scoreboard.GetComponent<Scoreboard>().ToggleThirdBase();
+            scoreboard.GetComponent<BaseballScoreboard>().ToggleThirdBase();
         }
     }
 

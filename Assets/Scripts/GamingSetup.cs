@@ -17,7 +17,7 @@ public class GamingSetup : MonoBehaviour
     void Start()
     {
         gameController = gameControllerObject.GetComponent<GameController>();
-        text = "Press " + gameController.actionKey.ToString() + " to gamble on MLB Games";
+        text = "Press " + gameController.actionKey.ToString() + " to open computer";
     }
 
     // Update is called once per frame

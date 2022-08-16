@@ -656,7 +656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 272888875}
-  - component: {fileID: 272888874}
+  - component: {fileID: 272888876}
   m_Layer: 0
   m_Name: Scoreboard
   m_TagString: Untagged
@@ -664,30 +664,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &272888874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272888873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf145e8280f440f4aa39e6711dbbdf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  awayScore: 0
-  homeScore: 0
-  awayTeam: SD
-  homeTeam: CLE
-  balls: 0
-  strikes: 0
-  outs: 0
-  inning: 1
-  isTop: 1
-  onFirstBase: 0
-  onSecondBase: 0
-  onThirdBase: 0
 --- !u!4 &272888875
 Transform:
   m_ObjectHideFlags: 0
@@ -704,6 +680,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &272888876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272888873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157aa0ccb39fa44e3987d3d10ffe9bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  awayScore: 0
+  homeScore: 0
+  awayTeam: SD
+  homeTeam: CLE
+  balls: 0
+  strikes: 0
+  outs: 0
+  inning: 1
+  isTop: 1
+  onFirstBase: 0
+  onSecondBase: 0
+  onThirdBase: 0
 --- !u!1 &276074561
 GameObject:
   m_ObjectHideFlags: 0
