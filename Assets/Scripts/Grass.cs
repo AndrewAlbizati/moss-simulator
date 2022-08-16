@@ -13,6 +13,8 @@ public class Grass : MonoBehaviour
     private Terrain terrain;
     private GameController gameController;
 
+    private int grassCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,8 @@ public class Grass : MonoBehaviour
             SpawnGrass();
             PlayerPrefs.SetInt("grassGenerated", 1);
         }
+
+        InvokeRepeating("PayGrassCutting", 1f, 0.5f);
     }
 
     // Update is called once per frame
@@ -31,11 +35,6 @@ public class Grass : MonoBehaviour
         if (player.GetComponent<PlayerMovement>().IsRiding())
         {
             CutGrass(player.transform.position, 4);
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SpawnGrass();
         }
     }
 
@@ -56,16 +55,29 @@ public class Grass : MonoBehaviour
 
 
         int[,] map = terrain.terrainData.GetDetailLayer(0, 0, terrain.terrainData.detailWidth, terrain.terrainData.detailHeight, 0);
-     
+
         for (int y = Mathf.FloorToInt(xymaxmin[3]); y < Mathf.CeilToInt(xymaxmin[2]); y++)
         {
             for (int x = Mathf.FloorToInt(xymaxmin[1]); x < Mathf.CeilToInt(xymaxmin[0]); x++)
             {
+                if (map[x, y] != 0)
+                {
+                    grassCount++;
+                }
                 map[x, y] = 0;
             }
         }
-
+        
         terrain.terrainData.SetDetailLayer(0, 0, 0, map);
+    }
+
+    void PayGrassCutting()
+    {
+        if (grassCount > 9)
+        {
+            gameController.AddMoney(1);
+        }
+        grassCount = 0;
     }
 
     private void SpawnGrass()

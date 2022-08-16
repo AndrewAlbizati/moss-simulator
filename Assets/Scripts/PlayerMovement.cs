@@ -169,8 +169,5 @@ public class PlayerMovement : MonoBehaviour
 
         controller.enabled = !isRiding;
         lawnMower.GetComponent<CharacterController>().enabled = isRiding;
-
-        
-        
     }
 }

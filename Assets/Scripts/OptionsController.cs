@@ -83,7 +83,7 @@ public class OptionsController : MonoBehaviour
         if (awaitingKeybind)
         {
             keybindButton.GetComponent<Button>().interactable = false;
-            keybindButton.transform.GetChild(0).GetComponent<TMP_Text>().SetText("Press any button");
+            keybindButton.transform.GetChild(0).GetComponent<TMP_Text>().SetText("Press any key...");
 
             foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
             {

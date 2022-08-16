@@ -27,10 +27,10 @@ public class GamingSetup : MonoBehaviour
         {
             float playerX = player.transform.position.x;
             float playerZ = player.transform.position.z;
-            float shopX = transform.position.x;
-            float shopZ = transform.position.z;
+            float computerX = transform.position.x;
+            float computerZ = transform.position.z;
 
-            float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
+            float distance = Mathf.Sqrt(Mathf.Pow(computerX - playerX, 2) + Mathf.Pow(computerZ - playerZ, 2));
 
             if (distance < 5 && !player.GetComponent<PlayerMovement>().IsRiding())
             {
@@ -40,7 +40,7 @@ public class GamingSetup : MonoBehaviour
 
                 if (Input.GetKeyDown(gameController.actionKey))
                 {
-                    SceneManager.LoadScene("Baseball");
+                    SceneManager.LoadScene("Computer");
                 }
             }
             else if (keybindLabel.GetComponent<TMP_Text>().text == text)

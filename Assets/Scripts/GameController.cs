@@ -38,7 +38,8 @@ public class GameController : MonoBehaviour
         "Search the mountains for helpful items",
         "Open the neighbor's house",
 
-
+        "Buy NBA League Pass",
+        "Buy NFL+",
 
 
 
@@ -95,12 +96,6 @@ public class GameController : MonoBehaviour
         {
             TogglePaused();
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            IncrementTaskIndex();
-        }
-
 
         if (isPaused)
         {

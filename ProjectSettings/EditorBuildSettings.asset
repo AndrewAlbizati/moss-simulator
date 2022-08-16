@@ -9,18 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 4b4443f9ea421461c9e9e71f2ba3738f
+  - enabled: 1
     path: Assets/Scenes/Ohio.unity
     guid: 12cb0ac36a379447399bf7a5c3da994c
   - enabled: 1
-    path: Assets/Scenes/California.unity
-    guid: 39593d2f68c0c4b4e8cfce07c3970346
+    path: Assets/Scenes/computer/Computer.unity
+    guid: 315e0cb0357704922abf39c68d3671c5
   - enabled: 1
-    path: Assets/Scenes/Baseball.unity
+    path: Assets/Scenes/computer/Baseball.unity
     guid: 27845917a73494761b61d1b6f1422594
+  - enabled: 1
+    path: Assets/Scenes/computer/Basketball.unity
+    guid: 39b9e8ab12098459fb38784ef15a06f6
+  - enabled: 1
+    path: Assets/Scenes/computer/Football.unity
+    guid: e88b56d4be9b0407a99f56cca51fd2d1
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 7fdde2f4ba45e41908e004e71036eae4
   - enabled: 1
-    path: Assets/Scenes/Options.unity
-    guid: 4b4443f9ea421461c9e9e71f2ba3738f
+    path: Assets/Scenes/California.unity
+    guid: 39593d2f68c0c4b4e8cfce07c3970346
   m_configObjects: {}
