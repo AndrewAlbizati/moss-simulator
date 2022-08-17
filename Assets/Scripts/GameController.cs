@@ -42,10 +42,10 @@ public class GameController : MonoBehaviour
         "Search the mountains for helpful items",
         "Open the neighbor's house",
 
-        "Earn $500",
+        "Earn $500 for NBA league pass",
         "Buy NBA League Pass",
 
-        "Earn $",
+        "Earn $500 for NFL+",
         "Buy NFL+",
 
 
@@ -70,12 +70,6 @@ public class GameController : MonoBehaviour
             coniferCount = PlayerPrefs.GetInt("conifers");
             taskIndex = PlayerPrefs.GetInt("taskindex");
         }
-        else
-        {
-            bradleyBucks = 0;
-            coniferCount = 0;
-            taskIndex = 0;
-        }
 
         if (PlayerPrefs.HasKey("actionKeybind"))
         {
@@ -94,6 +88,11 @@ public class GameController : MonoBehaviour
         taskLabel = labelsCanvas.transform.GetChild(1).gameObject;
         keybindLabel = labelsCanvas.transform.GetChild(2).gameObject;
         crosshair = labelsCanvas.transform.GetChild(3).gameObject;
+
+        moneyLabel.SetActive(true);
+        taskLabel.SetActive(true);
+        crosshair.SetActive(true);
+        pauseCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -106,18 +105,7 @@ public class GameController : MonoBehaviour
 
         if (isPaused)
         {
-            moneyLabel.SetActive(false);
-            taskLabel.SetActive(false);
-            keybindLabel.SetActive(false);
-            crosshair.SetActive(false);
-            pauseCanvas.SetActive(true);
             return;
-        } else
-        {
-            moneyLabel.SetActive(true);
-            taskLabel.SetActive(true);
-            crosshair.SetActive(true);
-            pauseCanvas.SetActive(false);
         }
 
         if (player.GetComponent<PlayerMovement>().IsRiding())
@@ -167,13 +155,22 @@ public class GameController : MonoBehaviour
                     IncrementTaskIndex();
                 }
                 break;
+
             case 5:
                 if (bradleyBucks >= 200)
                 {
                     IncrementTaskIndex();
                 }
                 break;
+
             case 9:
+                if (bradleyBucks >= 500)
+                {
+                    IncrementTaskIndex();
+                }
+                break;
+
+            case 11:
                 if (bradleyBucks >= 500)
                 {
                     IncrementTaskIndex();
@@ -232,6 +229,21 @@ public class GameController : MonoBehaviour
     public void TogglePaused()
     {
         isPaused = !isPaused;
+        if (isPaused)
+        {
+            moneyLabel.SetActive(false);
+            taskLabel.SetActive(false);
+            keybindLabel.SetActive(false);
+            crosshair.SetActive(false);
+            pauseCanvas.SetActive(true);
+        }
+        else
+        {
+            moneyLabel.SetActive(true);
+            taskLabel.SetActive(true);
+            crosshair.SetActive(true);
+            pauseCanvas.SetActive(false);
+        }
     }
 
     public bool IsPaused()

@@ -25,6 +25,7 @@ public class BasketballController : MonoBehaviour
         public string abbreviation;
         public float rate;
         public float ppg;
+        public float[] color;
     }
 
     [System.Serializable]
@@ -73,7 +74,7 @@ public class BasketballController : MonoBehaviour
 
         homeTeam = teamList.teams[5];
 
-        overUnder = Mathf.FloorToInt(awayTeam.ppg + homeTeam.ppg) - 10.5f;
+        overUnder = Mathf.FloorToInt(awayTeam.ppg + homeTeam.ppg) - 5.5f;
 
         scoreboard.SetActive(false);
         statusPopup.SetActive(false);
@@ -110,16 +111,21 @@ public class BasketballController : MonoBehaviour
 
         scoreboard.GetComponent<BasketballScoreboard>().awayTeam = awayTeam.abbreviation;
         scoreboard.GetComponent<BasketballScoreboard>().homeTeam = homeTeam.abbreviation;
+
+        scoreboard.GetComponent<BasketballScoreboard>().awayTeamColor = new Color(awayTeam.color[0] / 255, awayTeam.color[1] / 255, awayTeam.color[2] / 255, 1.0f);
+        scoreboard.GetComponent<BasketballScoreboard>().homeTeamColor = new Color(homeTeam.color[0] / 255, homeTeam.color[1] / 255, homeTeam.color[2] / 255, 1.0f);
+
         scoreboard.GetComponent<BasketballScoreboard>().overUnder = overUnder;
 
         Team winningTeam = DetermineWinner(awayTeam, homeTeam);
 
         do
         {
+                
             awayScore = Mathf.FloorToInt(awayTeam.ppg) + UnityEngine.Random.Range(-20, 20);
             homeScore = Mathf.FloorToInt(homeTeam.ppg) + UnityEngine.Random.Range(-20, 20);
         } while ((awayScore >= homeScore && winningTeam.abbreviation == homeTeam.abbreviation) || (awayScore <= homeScore && winningTeam.abbreviation == awayTeam.abbreviation));
-
+        
         awayPPQ = Mathf.CeilToInt(awayScore / 4.0f);
         homePPQ = Mathf.CeilToInt(homeScore / 4.0f);
 

@@ -50,20 +50,21 @@ public class BarnDoors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float playerX = player.transform.position.x;
-        float playerZ = player.transform.position.z;
-        float doorX = transform.GetChild(0).GetChild(1).position.x;
-        float doorZ = transform.GetChild(0).GetChild(1).position.z;
-
-        float distance = Mathf.Sqrt(Mathf.Pow(doorX - playerX, 2) + Mathf.Pow(doorZ - playerZ, 2));
-
-        if (distance < 10)
+        if (gameController.GetTaskIndex() == 8)
         {
-            TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
-            mText.SetText(text);
+            float playerX = player.transform.position.x;
+            float playerZ = player.transform.position.z;
+            float doorX = transform.GetChild(0).GetChild(1).position.x;
+            float doorZ = transform.GetChild(0).GetChild(1).position.z;
 
-            if (gameController.GetTaskIndex() == 8)
+            float distance = Mathf.Sqrt(Mathf.Pow(doorX - playerX, 2) + Mathf.Pow(doorZ - playerZ, 2));
+
+            if (distance < 10)
             {
+                TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
+                mText.SetText(text);
+
+
                 keybindLabel.SetActive(true);
                 if (Input.GetKeyDown(gameController.actionKey))
                 {

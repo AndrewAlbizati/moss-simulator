@@ -1665,7 +1665,7 @@ MonoBehaviour:
   scoreboard: {fileID: 1494677890}
   betboard: {fileID: 380268586}
   statusPopup: {fileID: 334487480}
-  basketballMusic: {fileID: 0}
+  basketballMusic: {fileID: 8300000, guid: f1a5837d5925243a0a5836b3f85d812f, type: 3}
   winner: {fileID: 21300000, guid: e3e4bd9854cc14cc5bd2043a60e4de29, type: 3}
   loser: {fileID: 21300000, guid: 0df634e8dcde640c789c5ceb058f5b18, type: 3}
 --- !u!4 &1074569142
@@ -1694,10 +1694,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

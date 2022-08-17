@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class BasketballScoreboard : MonoBehaviour
@@ -67,6 +68,9 @@ public class BasketballScoreboard : MonoBehaviour
 
         awayTeamLabel.GetComponent<TMP_Text>().SetText(awayTeam);
         homeTeamLabel.GetComponent<TMP_Text>().SetText(homeTeam);
+
+        awayTeamBox.GetComponent<Image>().color = awayTeamColor;
+        homeTeamBox.GetComponent<Image>().color = homeTeamColor;
 
         quarterLabel.GetComponent<TMP_Text>().SetText(quarter + (quarter == 1 ? "ST" : quarter == 2 ? "ND" : quarter == 3 ? "RD" : "TH"));
 

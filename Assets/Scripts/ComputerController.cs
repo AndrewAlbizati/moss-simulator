@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class ComputerController : MonoBehaviour
 {
+    public GameObject background;
+
     public GameObject mlbButton;
     public GameObject nbaButton;
     public GameObject nflButton;
@@ -51,5 +53,10 @@ public class ComputerController : MonoBehaviour
     public void BackButtonPressed()
     {
         SceneManager.LoadScene("Ohio");
+    }
+
+    public void ApplicationPressed(Sprite backgroundSprite)
+    {
+        background.GetComponent<Image>().sprite = backgroundSprite;
     }
 }

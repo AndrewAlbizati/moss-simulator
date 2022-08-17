@@ -15,13 +15,8 @@ public class Shop : MonoBehaviour
     public Material[] materials;
 
     private GameController gameController;
-    private bool hasScreens = false;
-    private bool hasDecorations = false;
 
-    private string[] texts;
-    
-
-    private int[] prices = { 10, 15, 200, 500 };
+    private int[] prices = { 10, 15, 200, 500, 500 };
 
     private int shopIndex = 0;
 
@@ -30,30 +25,17 @@ public class Shop : MonoBehaviour
         if (PlayerPrefs.HasKey("shopindex"))
         {
             shopIndex = PlayerPrefs.GetInt("shopindex");
-            
         }
 
-        if (PlayerPrefs.HasKey("screensactive"))
-        {
-            hasScreens = PlayerPrefs.GetInt("screensactive") == 1;
-        }
+        screen1.SetActive(shopIndex > 0);
+        screen2.SetActive(shopIndex > 0);
 
-        if (PlayerPrefs.HasKey("hasaxe"))
-        {
-        
-        }
-
-        if (PlayerPrefs.HasKey("hasdecorations"))
-        {
-            hasDecorations = PlayerPrefs.GetInt("hasdecorations") == 1;
-        }
+        decorations.SetActive(shopIndex > 2);
     }
 
     private void OnDisable()
     {
         PlayerPrefs.SetInt("shopindex", shopIndex);
-        PlayerPrefs.SetInt("screensactive", hasScreens ? 1 : 0);
-        PlayerPrefs.SetInt("hasdecorations", hasDecorations ? 1 : 0);
     }
 
     // Start is called before the first frame update
@@ -61,16 +43,6 @@ public class Shop : MonoBehaviour
     {
         gameController = gameControllerObject.GetComponent<GameController>();
 
-        texts = new string[] {
-            "Press " + gameController.actionKey.ToString() + " to buy for $10 Bradley Bucks",
-            "Press " + gameController.actionKey.ToString() + " to buy for $15 Bradley Bucks",
-            "Press " + gameController.actionKey.ToString() + " to buy for $200 Bradley Bucks",
-            "Press " + gameController.actionKey.ToString() + " to buy for $500 Bradley Bucks",
-        };
-
-        screen1.SetActive(false);
-        screen2.SetActive(false);
-        decorations.SetActive(false);
         keybindLabel.SetActive(false);
         UpdateMaterial();
     }
@@ -78,10 +50,7 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        screen1.SetActive(hasScreens);
-        screen2.SetActive(hasScreens);
-        decorations.SetActive(hasDecorations);
-
+        string text = "Press " + gameController.actionKey.ToString() + " to buy for $" + prices[shopIndex] + " Bradley Bucks";
 
         float playerX = player.transform.position.x;
         float playerZ = player.transform.position.z;
@@ -93,7 +62,7 @@ public class Shop : MonoBehaviour
         if (distance < 5 && !player.GetComponent<PlayerMovement>().IsRiding())
         {
             TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
-            mText.SetText(texts[shopIndex]);
+            mText.SetText(text);
 
             if (gameController.GetBradleyBucks() >= prices[shopIndex])
             {
@@ -108,8 +77,6 @@ public class Shop : MonoBehaviour
                                 keybindLabel.SetActive(false);
                                 screen1.SetActive(true);
                                 screen2.SetActive(true);
-                                hasScreens = true;
-
 
                                 gameController.IncrementTaskIndex();
                                 gameController.SpendMoney(prices[shopIndex]);
@@ -143,7 +110,6 @@ public class Shop : MonoBehaviour
                             {
                                 keybindLabel.SetActive(false);
                                 decorations.SetActive(true);
-                                hasDecorations = true;
 
                                 gameController.IncrementTaskIndex();
                                 gameController.SpendMoney(prices[shopIndex]);
@@ -169,6 +135,22 @@ public class Shop : MonoBehaviour
                             }
                         }
                         break;
+                    case 4:
+                        if (gameController.GetTaskIndex() == 12)
+                        {
+                            keybindLabel.SetActive(true);
+                            if (Input.GetKeyDown(gameController.actionKey))
+                            {
+                                keybindLabel.SetActive(false);
+
+                                gameController.IncrementTaskIndex();
+                                gameController.SpendMoney(prices[shopIndex]);
+
+                                shopIndex++;
+                                UpdateMaterial();
+                            }
+                        }
+                        break;
                 }
             }
             else
@@ -177,7 +159,7 @@ public class Shop : MonoBehaviour
             }
             
         }
-        else if (keybindLabel.GetComponent<TMP_Text>().text == texts[shopIndex])
+        else if (keybindLabel.GetComponent<TMP_Text>().text == text)
         {
             keybindLabel.SetActive(false);
         }
