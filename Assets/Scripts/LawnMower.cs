@@ -45,7 +45,7 @@ public class LawnMower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.GetTaskIndex() > 8)
+        if (!gameController.IsPaused() && gameController.GetTaskIndex() > 8)
         {
             float playerX = player.transform.position.x;
             float playerZ = player.transform.position.z;

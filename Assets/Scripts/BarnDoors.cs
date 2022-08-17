@@ -50,7 +50,7 @@ public class BarnDoors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.GetTaskIndex() == 8)
+        if (gameController.GetTaskIndex() == 8 && !gameController.IsPaused())
         {
             float playerX = player.transform.position.x;
             float playerZ = player.transform.position.z;
@@ -70,15 +70,12 @@ public class BarnDoors : MonoBehaviour
                 {
                     StartCoroutine(OpenDoors());
                     gameController.IncrementTaskIndex();
-                    return;
                 }
-            }
-            else
-            {
-                keybindLabel.SetActive(false);
+                return;
             }
         }
-        else if (keybindLabel.GetComponent<TMP_Text>().text == text)
+
+        if (keybindLabel.GetComponent<TMP_Text>().text == text)
         {
             keybindLabel.SetActive(false);
         }

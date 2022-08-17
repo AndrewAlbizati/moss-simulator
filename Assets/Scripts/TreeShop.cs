@@ -33,46 +33,46 @@ public class TreeShop : MonoBehaviour
             gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
 
-        float playerX = player.transform.position.x;
-        float playerZ = player.transform.position.z;
-        float shopX = transform.position.x;
-        float shopZ = transform.position.z;
-
-        float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
-
-        string text = "";
-        if (gameController.GetConiferCount() > 0)
+        if (!player.GetComponent<PlayerMovement>().IsRiding() && !gameController.IsPaused())
         {
-            text = "Press " + gameController.actionKey.ToString() + " to sell " + gameController.GetConiferCount() + " conifer" + (gameController.GetConiferCount() == 1 ? "" : "s") + " for $" + gameController.GetConiferCount() * 5 + "BB";
+            float playerX = player.transform.position.x;
+            float playerZ = player.transform.position.z;
+            float shopX = transform.position.x;
+            float shopZ = transform.position.z;
 
-        }
-         
-        if (distance < 5 && !player.GetComponent<PlayerMovement>().IsRiding())
-        {
-            TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
-            mText.SetText(text);
+            float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
 
-            if (gameController.GetTaskIndex() >= 5)
+            string text = "";
+            if (gameController.GetConiferCount() > 0)
             {
-                if (gameController.GetConiferCount() > 0)
+                text = "Press " + gameController.actionKey.ToString() + " to sell " + gameController.GetConiferCount() + " conifer" + (gameController.GetConiferCount() == 1 ? "" : "s") + " for $" + gameController.GetConiferCount() * 5 + "BB";
+            }
+
+            if (distance < 5)
+            {
+                TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
+                mText.SetText(text);
+
+                if (gameController.GetTaskIndex() >= 5)
                 {
-                    keybindLabel.SetActive(true);
-                    if (Input.GetKeyDown(gameController.actionKey))
+                    if (gameController.GetConiferCount() > 0)
                     {
-                        gameController.AddMoney(gameController.GetConiferCount() * 5);
-                        gameController.ResetConiferCount();
-                        gameController.PlayChaChing();
+                        keybindLabel.SetActive(true);
+                        if (Input.GetKeyDown(gameController.actionKey))
+                        {
+                            gameController.AddMoney(gameController.GetConiferCount() * 5);
+                            gameController.ResetConiferCount();
+                            gameController.PlayChaChing();
+                        }
                     }
                 }
+                return;
             }
-            else
+
+            if (keybindLabel.GetComponent<TMP_Text>().text == text)
             {
                 keybindLabel.SetActive(false);
             }
-        }
-        else if (keybindLabel.GetComponent<TMP_Text>().text == text)
-        {
-            keybindLabel.SetActive(false);
         }
     }
 }

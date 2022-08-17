@@ -17,6 +17,9 @@ public class BaseballController : MonoBehaviour
     public Sprite winner;
     public Sprite loser;
 
+    public AudioClip winnerAudio;
+    public AudioClip loserAudio;
+
     [System.Serializable]
     private class Team
     {
@@ -225,18 +228,22 @@ public class BaseballController : MonoBehaviour
             }
         }
 
+        audioSource.Stop();
+        audioSource.volume = 0.1f;
+
         if (winningTeam.abbreviation == bettedTeam.abbreviation)
         {
             statusPopup.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = winner;
             PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") + 10);
+            audioSource.PlayOneShot(winnerAudio);
         }
         else
         {
             statusPopup.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = loser;
             PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 10);
+            audioSource.PlayOneShot(loserAudio);
         }
 
-        audioSource.Stop();
         statusPopup.SetActive(true);
     }
 

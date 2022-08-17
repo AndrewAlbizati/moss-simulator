@@ -23,7 +23,7 @@ public class GamingSetup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.GetChild(1).GetChild(2).gameObject.activeInHierarchy)
+        if (!player.GetComponent<PlayerMovement>().IsRiding() && !gameController.IsPaused() && gameObject.transform.GetChild(1).GetChild(2).gameObject.activeInHierarchy)
         {
             float playerX = player.transform.position.x;
             float playerZ = player.transform.position.z;
@@ -32,7 +32,7 @@ public class GamingSetup : MonoBehaviour
 
             float distance = Mathf.Sqrt(Mathf.Pow(computerX - playerX, 2) + Mathf.Pow(computerZ - playerZ, 2));
 
-            if (distance < 5 && !player.GetComponent<PlayerMovement>().IsRiding())
+            if (distance < 5)
             {
                 TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
                 mText.SetText(text);
@@ -42,11 +42,13 @@ public class GamingSetup : MonoBehaviour
                 {
                     SceneManager.LoadScene("Computer");
                 }
+                return;
             }
-            else if (keybindLabel.GetComponent<TMP_Text>().text == text)
-            {
-                keybindLabel.SetActive(false);
-            }
+        }
+
+        if (keybindLabel.GetComponent<TMP_Text>().text == text)
+        {
+            keybindLabel.SetActive(false);
         }
     }
 }

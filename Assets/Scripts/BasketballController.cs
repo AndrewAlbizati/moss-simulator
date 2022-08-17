@@ -17,6 +17,9 @@ public class BasketballController : MonoBehaviour
     public Sprite winner;
     public Sprite loser;
 
+    public AudioClip winnerAudio;
+    public AudioClip loserAudio;
+
     [System.Serializable]
     private class Team
     {
@@ -148,6 +151,10 @@ public class BasketballController : MonoBehaviour
                 {
                     scoreboard.GetComponent<BasketballScoreboard>().timeMinutes = 0;
                     scoreboard.GetComponent<BasketballScoreboard>().timeSeconds = 0;
+
+                    scoreboard.GetComponent<BasketballScoreboard>().awayScore = awayPPQ * scoreboard.GetComponent<BasketballScoreboard>().quarter;
+                    scoreboard.GetComponent<BasketballScoreboard>().homeScore = homePPQ * scoreboard.GetComponent<BasketballScoreboard>().quarter;
+
                     break;
                 }
 
@@ -161,18 +168,22 @@ public class BasketballController : MonoBehaviour
 
         totalScore = scoreboard.GetComponent<BasketballScoreboard>().awayScore + scoreboard.GetComponent<BasketballScoreboard>().homeScore;
 
+        audioSource.Stop();
+        audioSource.volume = 0.3f;
         if ((bettedOver && totalScore > overUnder) || (!bettedOver && totalScore < overUnder))
         {
             statusPopup.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = winner;
             PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") + 50);
+            audioSource.PlayOneShot(winnerAudio);
         }
         else
         {
             statusPopup.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = loser;
             PlayerPrefs.SetInt("money", PlayerPrefs.GetInt("money") - 50);
+            audioSource.PlayOneShot(loserAudio);
         }
 
-        audioSource.Stop();
+        
         statusPopup.SetActive(true);
     }
 

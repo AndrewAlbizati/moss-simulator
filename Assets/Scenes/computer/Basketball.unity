@@ -1665,9 +1665,11 @@ MonoBehaviour:
   scoreboard: {fileID: 1494677890}
   betboard: {fileID: 380268586}
   statusPopup: {fileID: 334487480}
-  basketballMusic: {fileID: 8300000, guid: f1a5837d5925243a0a5836b3f85d812f, type: 3}
+  basketballMusic: {fileID: 8300000, guid: f74a97a88b4fd42b6bd91f7123a318b1, type: 3}
   winner: {fileID: 21300000, guid: e3e4bd9854cc14cc5bd2043a60e4de29, type: 3}
   loser: {fileID: 21300000, guid: 0df634e8dcde640c789c5ceb058f5b18, type: 3}
+  winnerAudio: {fileID: 8300000, guid: 86527c69ba63940eba9377e723ff6788, type: 3}
+  loserAudio: {fileID: 8300000, guid: adc23170ef81b4392b9e495b56d22275, type: 3}
 --- !u!4 &1074569142
 Transform:
   m_ObjectHideFlags: 0

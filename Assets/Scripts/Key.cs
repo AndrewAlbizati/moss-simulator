@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Key : MonoBehaviour
@@ -47,20 +48,20 @@ public class Key : MonoBehaviour
             isVisible = true;
             gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
-
-        float playerX = player.transform.position.x;
-        float playerZ = player.transform.position.z;
-        float keyX = transform.position.x;
-        float keyZ = transform.position.z;
-
-        float distance = Mathf.Sqrt(Mathf.Pow(keyX - playerX, 2) + Mathf.Pow(keyZ - playerZ, 2));
-
-        if (distance < 5)
+        if (!player.GetComponent<PlayerMovement>().IsRiding() && !gameController.IsPaused())
         {
+            float playerX = player.transform.position.x;
+            float playerZ = player.transform.position.z;
+            float keyX = transform.position.x;
+            float keyZ = transform.position.z;
+
+            float distance = Mathf.Sqrt(Mathf.Pow(keyX - playerX, 2) + Mathf.Pow(keyZ - playerZ, 2));
+
+        
             TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
             mText.SetText(text);
 
-            if (gameController.GetTaskIndex() >= 7)
+            if (distance < 5 && gameController.GetTaskIndex() >= 7)
             {
                 keybindLabel.SetActive(true);
                 if (Input.GetKeyDown(gameController.actionKey))
@@ -72,13 +73,11 @@ public class Key : MonoBehaviour
                     gameObject.SetActive(false);
                     return;
                 }
-            }
-            else
-            {
-                keybindLabel.SetActive(false);
+                return;
             }
         }
-        else if (keybindLabel.GetComponent<TMP_Text>().text == text)
+
+        if (keybindLabel.GetComponent<TMP_Text>().text == text)
         {
             keybindLabel.SetActive(false);
         }

@@ -59,7 +59,7 @@ public class Shop : MonoBehaviour
 
         float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
 
-        if (distance < 5 && !player.GetComponent<PlayerMovement>().IsRiding())
+        if (!player.GetComponent<PlayerMovement>().IsRiding() && !gameController.IsPaused() && distance < 5)
         {
             TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
             mText.SetText(text);
@@ -153,13 +153,11 @@ public class Shop : MonoBehaviour
                         break;
                 }
             }
-            else
-            {
-                keybindLabel.SetActive(false);
-            }
+            return;
             
         }
-        else if (keybindLabel.GetComponent<TMP_Text>().text == text)
+
+        if (keybindLabel.GetComponent<TMP_Text>().text == text)
         {
             keybindLabel.SetActive(false);
         }

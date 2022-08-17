@@ -23,7 +23,7 @@ public class CaliforniaPortalShop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.activeInHierarchy)
+        if (!gameController.IsPaused())
         {
             if (gameController.GetBradleyBucks() >= 100000)
             {
@@ -53,6 +53,10 @@ public class CaliforniaPortalShop : MonoBehaviour
                 {
                     keybindLabel.SetActive(false);
                 }
+            }
+            else
+            {
+                keybindLabel.SetActive(false);
             }
         }
     }
