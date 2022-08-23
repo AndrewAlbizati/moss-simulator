@@ -299,7 +299,7 @@ public class BaseballController : MonoBehaviour
         float team1Rate = team1.rate;
         float team2Rate = team2.rate;
 
-        if (PlayerPrefs.GetInt("money") <= -20)
+        if (PlayerPrefs.GetInt("money") <= 0)
         {
             if (team1.abbreviation == bettedTeam.abbreviation)
             {

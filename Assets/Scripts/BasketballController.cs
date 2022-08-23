@@ -82,8 +82,8 @@ public class BasketballController : MonoBehaviour
         scoreboard.SetActive(false);
         statusPopup.SetActive(false);
 
-        betboard.transform.GetChild(0).GetChild(5).GetComponent<TMP_Text>().SetText(awayTeam.abbreviation + " vs " + homeTeam.abbreviation);
-        betboard.transform.GetChild(0).GetChild(1).GetComponent<TMP_Text>().SetText(overUnder.ToString());
+        betboard.transform.GetChild(0).GetChild(4).GetComponent<TMP_Text>().SetText(awayTeam.abbreviation + " vs " + homeTeam.abbreviation);
+        betboard.transform.GetChild(0).GetChild(5).GetComponent<TMP_Text>().SetText(overUnder.ToString());
     }
 
     public void OverClicked()

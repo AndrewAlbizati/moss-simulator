@@ -2,170 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shop : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject screen1;
-    public GameObject screen2;
-    public GameObject decorations;
-    public GameObject keybindLabel;
     public GameObject gameControllerObject;
+    public GameObject player;
+    public GameObject keybindLabel;
 
-    public Material[] materials;
+    [Header("Shop Settings")]
+    public int price;
+    public int minimumTaskIndex;
+    public UnityEvent onBuyFunction;
 
     private GameController gameController;
-
-    private int[] prices = { 10, 15, 200, 500, 500 };
-
-    private int shopIndex = 0;
-
-    private void OnEnable()
-    {
-        if (PlayerPrefs.HasKey("shopindex"))
-        {
-            shopIndex = PlayerPrefs.GetInt("shopindex");
-        }
-
-        screen1.SetActive(shopIndex > 0);
-        screen2.SetActive(shopIndex > 0);
-
-        decorations.SetActive(shopIndex > 2);
-    }
-
-    private void OnDisable()
-    {
-        PlayerPrefs.SetInt("shopindex", shopIndex);
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         gameController = gameControllerObject.GetComponent<GameController>();
-
-        keybindLabel.SetActive(false);
-        UpdateMaterial();
     }
 
     // Update is called once per frame
     void Update()
     {
-        string text = "Press " + gameController.actionKey.ToString() + " to buy for $" + prices[shopIndex] + " Bradley Bucks";
-
-        float playerX = player.transform.position.x;
-        float playerZ = player.transform.position.z;
-        float shopX = transform.position.x;
-        float shopZ = transform.position.z;
-
-        float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
-
-        if (!player.GetComponent<PlayerMovement>().IsRiding() && !gameController.IsPaused() && distance < 5)
+        if (!player.GetComponent<PlayerMovement>().IsRiding() && !gameController.IsPaused() && gameController.GetBradleyBucks() >= price)
         {
-            TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
-            mText.SetText(text);
+            float playerX = player.transform.position.x;
+            float playerZ = player.transform.position.z;
+            float shopX = transform.position.x;
+            float shopZ = transform.position.z;
 
-            if (gameController.GetBradleyBucks() >= prices[shopIndex])
+            float distance = Mathf.Sqrt(Mathf.Pow(shopX - playerX, 2) + Mathf.Pow(shopZ - playerZ, 2));
+
+            if (gameController.GetTaskIndex() >= minimumTaskIndex && distance < 5)
             {
-                switch (shopIndex)
+                TMP_Text mText = keybindLabel.GetComponent<TMP_Text>();
+                mText.SetText(GetShopText());
+                keybindLabel.SetActive(true);
+
+                if (Input.GetKeyDown(gameController.actionKey))
                 {
-                    case 0:
-                        if (gameController.GetTaskIndex() == 2)
-                        {
-                            keybindLabel.SetActive(true);
-                            if (Input.GetKeyDown(gameController.actionKey))
-                            {
-                                keybindLabel.SetActive(false);
-                                screen1.SetActive(true);
-                                screen2.SetActive(true);
+                    keybindLabel.SetActive(false);
 
-                                gameController.IncrementTaskIndex();
-                                gameController.SpendMoney(prices[shopIndex]);
-
-                                shopIndex++;
-                                UpdateMaterial();
-                            }
-                        }
-                        break;
-                    case 1:
-                        if (gameController.GetTaskIndex() == 4)
-                        {
-                            keybindLabel.SetActive(true);
-                            if (Input.GetKeyDown(gameController.actionKey))
-                            {
-                                keybindLabel.SetActive(false);
-
-                                gameController.IncrementTaskIndex();
-                                gameController.SpendMoney(prices[shopIndex]);
-
-                                shopIndex++;
-                                UpdateMaterial();
-                            }
-                        }
-                        break;
-                    case 2:
-                        if (gameController.GetTaskIndex() == 6)
-                        {
-                            keybindLabel.SetActive(true);
-                            if (Input.GetKeyDown(gameController.actionKey))
-                            {
-                                keybindLabel.SetActive(false);
-                                decorations.SetActive(true);
-
-                                gameController.IncrementTaskIndex();
-                                gameController.SpendMoney(prices[shopIndex]);
-
-                                shopIndex++;
-                                UpdateMaterial();
-                            }
-                        }
-                        break;
-                    case 3:
-                        if (gameController.GetTaskIndex() == 10)
-                        {
-                            keybindLabel.SetActive(true);
-                            if (Input.GetKeyDown(gameController.actionKey))
-                            {
-                                keybindLabel.SetActive(false);
-
-                                gameController.IncrementTaskIndex();
-                                gameController.SpendMoney(prices[shopIndex]);
-
-                                shopIndex++;
-                                UpdateMaterial();
-                            }
-                        }
-                        break;
-                    case 4:
-                        if (gameController.GetTaskIndex() == 12)
-                        {
-                            keybindLabel.SetActive(true);
-                            if (Input.GetKeyDown(gameController.actionKey))
-                            {
-                                keybindLabel.SetActive(false);
-
-                                gameController.IncrementTaskIndex();
-                                gameController.SpendMoney(prices[shopIndex]);
-
-                                shopIndex++;
-                                UpdateMaterial();
-                            }
-                        }
-                        break;
+                    gameController.SpendMoney(price);
+                    onBuyFunction.Invoke();
                 }
+                return;
             }
-            return;
-            
         }
-
-        if (keybindLabel.GetComponent<TMP_Text>().text == text)
+        if (keybindLabel.GetComponent<TMP_Text>().text == GetShopText())
         {
             keybindLabel.SetActive(false);
         }
     }
 
-    void UpdateMaterial()
+    private string GetShopText()
     {
-        MeshRenderer mr = gameObject.GetComponent<MeshRenderer>();
-        mr.sharedMaterial = materials[shopIndex];
+        return "Press " + gameController.actionKey.ToString() + " to buy for $" + price + " Bradley Bucks"; 
     }
 }

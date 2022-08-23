@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip walk;
     public AudioClip mow;
 
+    public bool isWalking;
+    public bool isSprinting;
 
     Vector3 velocity;
     bool isGrounded;
@@ -31,28 +33,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerPrefs.HasKey("posx") && PlayerPrefs.HasKey("posy") && PlayerPrefs.HasKey("posz") && PlayerPrefs.HasKey("rotx") && PlayerPrefs.HasKey("roty") && PlayerPrefs.HasKey("rotz"))
+        if (PlayerPrefs.HasKey("playerPosX") && PlayerPrefs.HasKey("playerPosY") && PlayerPrefs.HasKey("playerPosZ") && PlayerPrefs.HasKey("playerRotX") && PlayerPrefs.HasKey("playerRotY") && PlayerPrefs.HasKey("playerRotZ"))
         {
-            gameObject.transform.position = new Vector3(PlayerPrefs.GetFloat("posx"), PlayerPrefs.GetFloat("posy"), PlayerPrefs.GetFloat("posz"));
-            gameObject.transform.eulerAngles = new Vector3(PlayerPrefs.GetFloat("rotx"), PlayerPrefs.GetFloat("roty"), PlayerPrefs.GetFloat("rotz"));
+            gameObject.transform.position = new Vector3(PlayerPrefs.GetFloat("playerPosX"), PlayerPrefs.GetFloat("playerPosY"), PlayerPrefs.GetFloat("playerPosZ"));
+            gameObject.transform.eulerAngles = new Vector3(PlayerPrefs.GetFloat("playerRotX"), PlayerPrefs.GetFloat("playerRotY"), PlayerPrefs.GetFloat("playerRotZ"));
         }
     }
 
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat("posx", transform.position.x);
-        PlayerPrefs.SetFloat("posy", transform.position.y);
-        PlayerPrefs.SetFloat("posz", transform.position.z);
+        PlayerPrefs.SetFloat("playerPosX", transform.position.x);
+        PlayerPrefs.SetFloat("playerPosY", transform.position.y);
+        PlayerPrefs.SetFloat("playerPosZ", transform.position.z);
 
-        PlayerPrefs.SetFloat("rotx", transform.eulerAngles.x);
-        PlayerPrefs.SetFloat("roty", transform.eulerAngles.y);
-        PlayerPrefs.SetFloat("rotz", transform.eulerAngles.z);
+        PlayerPrefs.SetFloat("playerRotX", transform.eulerAngles.x);
+        PlayerPrefs.SetFloat("playerRotY", transform.eulerAngles.y);
+        PlayerPrefs.SetFloat("playerRotZ", transform.eulerAngles.z);
     }
 
     private void Start()
     {
         isRiding = false;
+        isWalking = false;
+        isSprinting = false;
+
 
         controller = gameObject.GetComponent<CharacterController>();
         gameController = gameControllerObject.GetComponent<GameController>();
@@ -89,15 +94,19 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                //gameObject.GetComponent<AudioSource>().pitch = 0.5f;
                 gameObject.GetComponent<AudioSource>().pitch = 1.2f;
                 speed = walkingSpeed * 1.5f;
+
+                isWalking = false;
+                isSprinting = move.x != 0 || move.z != 0;
             }
             else
             {
-                //gameObject.GetComponent<AudioSource>().pitch = 0.2f;
                 gameObject.GetComponent<AudioSource>().pitch = 1f;
                 speed = walkingSpeed;
+
+                isSprinting = false;
+                isWalking = move.x != 0 || move.z != 0;
             }
 
             // Play walking sound
@@ -116,8 +125,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
-
-            
 
             velocity.y += gravity * Time.deltaTime;
 
