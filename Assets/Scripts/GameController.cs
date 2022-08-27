@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameController : MonoBehaviour
 
     public GameObject labelsCanvas;
     public GameObject pauseCanvas;
+    public GameObject deathCanvas;
 
     public GameObject player;
     public GameObject lawnMower;
@@ -107,7 +109,9 @@ public class GameController : MonoBehaviour
         taskLabel.SetActive(true);
         crosshair.SetActive(true);
         keybindLabel.SetActive(false);
+
         pauseCanvas.SetActive(false);
+        deathCanvas.SetActive(false);
 
         InvokeRepeating("DepleteHunger", 1.0f, 1.0f);
     }
@@ -124,17 +128,6 @@ public class GameController : MonoBehaviour
         {
             return;
         }
-
-        if (player.GetComponent<PlayerMovement>().IsRiding())
-        {
-            player.GetComponent<CharacterController>().enabled = false;
-            Transform seat = lawnMower.transform.GetChild(6);
-            player.transform.position = new Vector3(seat.position.x, seat.position.y + 2, seat.position.z);
-        }
-        else
-        {
-            player.GetComponent<CharacterController>().enabled = true;
-        } 
 
         float playerX = player.transform.position.x;
         float playerZ = player.transform.position.z;
@@ -297,6 +290,10 @@ public class GameController : MonoBehaviour
             hunger -= 0.004f;
         }
         UpdateHungerBar();
+        if (hunger <= 0.0f)
+        {
+            ShowDeathScreen();
+        }
     }
 
     public void UpdateHungerBar()
@@ -320,5 +317,18 @@ public class GameController : MonoBehaviour
     {
         hunger = 1f;
         UpdateHungerBar();
+    }
+
+    public void ShowDeathScreen()
+    {
+        isPaused = true;
+        labelsCanvas.SetActive(false);
+        pauseCanvas.SetActive(false);
+        deathCanvas.SetActive(true);
+    }
+
+    public void OnTitleScreenPressed()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

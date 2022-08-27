@@ -152,6 +152,9 @@ public class PlayerMovement : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
 
             lawnMower.GetComponent<CharacterController>().Move(velocity * Time.deltaTime);
+
+            Transform seat = lawnMower.transform.GetChild(6);
+            transform.position = new Vector3(seat.position.x, seat.position.y + 2, seat.position.z);
         }
     }
 
@@ -176,5 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.enabled = !isRiding;
         lawnMower.GetComponent<CharacterController>().enabled = isRiding;
+
+        GetComponent<CharacterController>().enabled = !isRiding;
     }
 }
