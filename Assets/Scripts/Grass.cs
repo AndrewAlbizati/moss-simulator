@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Grass : MonoBehaviour
@@ -13,7 +14,21 @@ public class Grass : MonoBehaviour
     private Terrain terrain;
     private GameController gameController;
 
-    private int grassCount = 0;
+    private int grassPerSecond = 0;
+    private int totalGrassCount = 0;
+
+    private void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("totalGrassCount"))
+        {
+            totalGrassCount = PlayerPrefs.GetInt("totalGrassCount");
+        }
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetInt("totalGrassCount", totalGrassCount);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +77,8 @@ public class Grass : MonoBehaviour
             {
                 if (map[x, y] != 0)
                 {
-                    grassCount++;
+                    totalGrassCount++;
+                    grassPerSecond++;
                 }
                 map[x, y] = 0;
             }
@@ -73,11 +89,17 @@ public class Grass : MonoBehaviour
 
     void PayGrassCutting()
     {
-        if (grassCount > 9)
+        if (grassPerSecond > 5)
         {
             gameController.AddMoney(1);
+            grassPerSecond = 0;
         }
-        grassCount = 0;
+
+        if (totalGrassCount > 30000)
+        {
+            GiveBonus();
+            totalGrassCount = 0;
+        }
     }
 
     private void SpawnGrass()
@@ -107,5 +129,15 @@ public class Grass : MonoBehaviour
         }
 
         terrain.terrainData.SetDetailLayer(0, 0, 0, newDetailLayer);
+    }
+
+    private void GiveBonus()
+    {
+        int bonus = Random.Range(100, 5000);
+        player.transform.GetChild(1).GetChild(1).GetChild(3).GetChild(1).GetComponent<TMP_Text>().SetText("Great work! You've earned a bonus of $" + bonus + "BB for working so hard.");
+        gameController.AddMoney(bonus);
+
+        gameController.TogglePaused();
+        player.transform.GetChild(1).GetChild(1).GetChild(3).gameObject.SetActive(true);
     }
 }
