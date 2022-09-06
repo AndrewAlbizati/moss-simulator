@@ -9,6 +9,8 @@ public class MainShopManager : MonoBehaviour
     public GameObject screen1;
     public GameObject screen2;
     public GameObject decorations;
+    public GameObject cornFarm;
+
     public GameObject gameControllerObject;
 
     public int[] prices = { 10, 15, 200, 500, 500, 1000 };
@@ -68,7 +70,7 @@ public class MainShopManager : MonoBehaviour
 
     public void CornFarmBought()
     {
-
+        cornFarm.SetActive(true);
         ItemPurchased();
     }
 
