@@ -53,6 +53,9 @@ public class GameController : MonoBehaviour
         "Earn $500BB for NFL+",
         "Buy NFL+",
 
+        "Earn $1000BB for corn farm",
+        "Buy corn farm",
+
 
 
         "Buy California portal",

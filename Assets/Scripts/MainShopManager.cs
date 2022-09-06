@@ -11,8 +11,8 @@ public class MainShopManager : MonoBehaviour
     public GameObject decorations;
     public GameObject gameControllerObject;
 
-    public int[] prices = { 10, 15, 200, 500, 500 };
-    public int[] minimumTaskIndexes = { 2, 4, 6, 10, 12 };
+    public int[] prices = { 10, 15, 200, 500, 500, 1000 };
+    public int[] minimumTaskIndexes = { 2, 4, 6, 10, 12, 14 };
     public Material[] materials;
     public UnityEvent[] functions;
 
@@ -63,6 +63,12 @@ public class MainShopManager : MonoBehaviour
     public void DecorationsBought()
     {
         decorations.SetActive(true);
+        ItemPurchased();
+    }
+
+    public void CornFarmBought()
+    {
+
         ItemPurchased();
     }
 
