@@ -7,6 +7,8 @@ public class BradleyBuck : MonoBehaviour
     public GameObject player;
     public GameObject gameControllerObject;
 
+    public int minimumTaskIndex;
+
     private bool collected = false;
     private GameController gameController;
 
@@ -43,7 +45,7 @@ public class BradleyBuck : MonoBehaviour
         else
         {
 
-            if (gameController.GetTaskIndex() >= 1)
+            if (gameController.GetTaskIndex() >= minimumTaskIndex)
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = true;
             } else if (gameObject.GetComponent<MeshRenderer>().enabled)

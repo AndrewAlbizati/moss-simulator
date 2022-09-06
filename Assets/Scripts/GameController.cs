@@ -122,6 +122,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            AddMoney(1000);
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePaused();
@@ -179,6 +183,13 @@ public class GameController : MonoBehaviour
 
             case 11:
                 if (bradleyBucks >= 500)
+                {
+                    IncrementTaskIndex();
+                }
+                break;
+
+            case 13:
+                if (bradleyBucks >= 1000)
                 {
                     IncrementTaskIndex();
                 }

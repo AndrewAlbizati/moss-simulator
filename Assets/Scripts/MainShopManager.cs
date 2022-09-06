@@ -10,6 +10,7 @@ public class MainShopManager : MonoBehaviour
     public GameObject screen2;
     public GameObject decorations;
     public GameObject cornFarm;
+    public GameObject lawnMower;
 
     public GameObject gameControllerObject;
 
@@ -33,6 +34,7 @@ public class MainShopManager : MonoBehaviour
         screen2.SetActive(shopIndex > 0);
 
         decorations.SetActive(shopIndex > 2);
+        cornFarm.SetActive(shopIndex > 5);
     }
 
     private void OnDisable()
@@ -47,12 +49,6 @@ public class MainShopManager : MonoBehaviour
         shop = GetComponent<Shop>();
 
         UpdateMaterial();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void ScreenRepairBought()
@@ -70,6 +66,18 @@ public class MainShopManager : MonoBehaviour
 
     public void CornFarmBought()
     {
+        float farmX = cornFarm.transform.GetChild(0).transform.position.x;
+        float farmZ = cornFarm.transform.GetChild(0).transform.position.z;
+        float mowerX = lawnMower.transform.GetChild(3).position.x;
+        float mowerZ = lawnMower.transform.GetChild(3).position.z;
+
+        float distance = Mathf.Sqrt(Mathf.Pow(mowerX - farmX, 2) + Mathf.Pow(mowerZ - farmZ, 2));
+
+        if (distance < 15)
+        {
+            lawnMower.transform.position = new Vector3(-220.41f, 16.19f, 88.82f);
+        }
+
         cornFarm.SetActive(true);
         ItemPurchased();
     }
@@ -83,6 +91,10 @@ public class MainShopManager : MonoBehaviour
 
     void UpdateMaterial()
     {
+        if (shopIndex > prices.Length - 1)
+        {
+            return;
+        }
         gameObject.GetComponent<MeshRenderer>().sharedMaterial = materials[shopIndex];
         shop.price = prices[shopIndex];
         shop.minimumTaskIndex = minimumTaskIndexes[shopIndex];

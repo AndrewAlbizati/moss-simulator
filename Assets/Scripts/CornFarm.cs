@@ -15,12 +15,24 @@ public class CornFarm : MonoBehaviour
     private string text;
     private GameController gameController;
 
+    private void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("growthLevel"))
+        {
+            growthLevel = PlayerPrefs.GetFloat("growthLevel");
+        }
+        UpdateScale();
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetFloat("growthLevel", growthLevel);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         gameController = gameControllerObject.GetComponent<GameController>();
-
-        gameObject.SetActive(gameController.GetTaskIndex() >= 15);
         
         text = "Press " + gameController.actionKey.ToString() + " to harvest";
         InvokeRepeating("Grow", 1f, 0.25f);
