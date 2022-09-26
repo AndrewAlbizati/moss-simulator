@@ -11,7 +11,7 @@ public class CornFarm : MonoBehaviour
     public GameObject keybindLabel;
 
     private float growthLevel = 1.0f;
-    private int pricePerCorn = 20;
+    private int pricePerCorn = 50;
     private string text;
     private GameController gameController;
 

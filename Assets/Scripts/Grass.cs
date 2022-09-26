@@ -16,6 +16,7 @@ public class Grass : MonoBehaviour
 
     private int grassPerSecond = 0;
     private int totalGrassCount = 0;
+    private int bonusThreshold = 30000;
 
     private void OnEnable()
     {
@@ -95,10 +96,10 @@ public class Grass : MonoBehaviour
             grassPerSecond = 0;
         }
 
-        if (totalGrassCount > 30000)
+        if (totalGrassCount / bonusThreshold > 0)
         {
             GiveBonus();
-            totalGrassCount = 0;
+            bonusThreshold += 30000;
         }
     }
 
@@ -133,7 +134,7 @@ public class Grass : MonoBehaviour
 
     private void GiveBonus()
     {
-        int bonus = Random.Range(100, 5000);
+        int bonus = Random.Range(100, bonusThreshold / 25);
         player.transform.GetChild(1).GetChild(1).GetChild(3).GetChild(1).GetComponent<TMP_Text>().SetText("Great work! You've earned a bonus of $" + bonus + "BB for working so hard.");
         gameController.AddMoney(bonus);
 

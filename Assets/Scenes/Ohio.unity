@@ -850,7 +850,7 @@ MonoBehaviour:
   gameControllerObject: {fileID: 757051594}
   player: {fileID: 1016430255}
   keybindLabel: {fileID: 412560990}
-  price: 100000
+  price: 10000
   minimumTaskIndex: 0
   onBuyFunction:
     m_PersistentCalls:
@@ -11401,7 +11401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331941828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.74, y: -14.52, z: 0.53}
+  m_LocalPosition: {x: -5.74, y: -14.52, z: 0.08}
   m_LocalScale: {x: 0.1, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11441,7 +11441,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fe852c844e59d41228df4f09cb7b6520, type: 2}
+  - {fileID: 2100000, guid: df5611087ddb24f918fe06b5d373ae52, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13560,7 +13560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1642778363
 Transform:
   m_ObjectHideFlags: 0
