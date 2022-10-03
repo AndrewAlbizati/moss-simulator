@@ -14030,6 +14030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15d3705a1dd642338b3234690341443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameControllerObject: {fileID: 757051594}
   screen1: {fileID: 456492678}
   screen2: {fileID: 1445838505}
   foodShop1: {fileID: 1567887997}
@@ -14038,7 +14039,6 @@ MonoBehaviour:
   decorations: {fileID: 2041423413}
   cornFarm: {fileID: 534497661}
   lawnMower: {fileID: 212968177}
-  gameControllerObject: {fileID: 757051594}
   prices: 0a0000000f000000c8000000f4010000f4010000e8030000
   minimumTaskIndexes: 0200000004000000060000000a0000000c0000000e000000
   materials:
@@ -17162,7 +17162,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96

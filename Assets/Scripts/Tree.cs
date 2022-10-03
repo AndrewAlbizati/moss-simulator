@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Tree : MonoBehaviour
 {
+    [Header("GameObjects")]
     public GameObject gameControllerObject;
     public GameObject player;
+
+    [Header("Tree Chopping Sounds")]
     public AudioClip[] clips;
 
     private GameController gameController;

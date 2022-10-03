@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Game Objects")]
     public GameObject lawnMower;
     public GameObject gameControllerObject;
 
+    [Header("Default Walking Speed")]
     public float walkingSpeed = 12f;
 
     private float speed;
 
+    [Header("Jump/Gravity")]
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
 
+    [Header("Ground")]
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
+    [Header("Audio")]
     public AudioClip walk;
     public AudioClip mow;
 
+    [Header("Walking/Sprinting")]
     public bool isWalking;
     public bool isSprinting;
 

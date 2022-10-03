@@ -6,20 +6,24 @@ using UnityEngine.Events;
 
 public class MainShopManager : MonoBehaviour
 {
+    [Header("Game Controller")]
+    public GameObject gameControllerObject;
+
+    [Header("Screens")]
     public GameObject screen1;
     public GameObject screen2;
 
+    [Header("Food Shops")]
     public GameObject foodShop1;
     public GameObject foodShop2;
     public GameObject foodShop3;
 
-
+    [Header("Spawnable Objects")]
     public GameObject decorations;
     public GameObject cornFarm;
     public GameObject lawnMower;
 
-    public GameObject gameControllerObject;
-
+    [Header("Shop Lists")]
     public int[] prices = { 10, 15, 200, 500, 500, 1000 };
     public int[] minimumTaskIndexes = { 2, 4, 6, 10, 12, 14 };
     public Material[] materials;

@@ -8,14 +8,19 @@ using UnityEngine.SceneManagement;
 
 public class FootballController : MonoBehaviour
 {
+    [Header("Scoreboards")]
     public GameObject recordBoard;
     public GameObject betboard;
     public GameObject statusPopup;
+
+    [Header("Background Music")]
     public AudioClip footballMusic;
 
+    [Header("Message Sprites")]
     public Sprite winner;
     public Sprite loser;
 
+    [Header("Audio")]
     public AudioClip winnerAudio;
     public AudioClip loserAudio;
 

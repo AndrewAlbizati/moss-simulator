@@ -6,12 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class ComputerController : MonoBehaviour
 {
+    [Header("Background")]
     public GameObject background;
 
+    [Header("Buttons")]
     public GameObject mlbButton;
     public GameObject nbaButton;
     public GameObject nflButton;
 
+    [Header("Back to Game Button")]
     public GameObject backButton;
 
     // Start is called before the first frame update
@@ -27,12 +30,6 @@ public class ComputerController : MonoBehaviour
         nbaButton.GetComponent<Button>().interactable = taskIndex > 10;
 
         nflButton.GetComponent<Button>().interactable = taskIndex > 12;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void MLBButtonPressed()

@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Grass : MonoBehaviour
 {
+    [Header("GameObjects")]
     public GameObject player;
     public GameObject gameControllerObject;
 
+    [Header("Grass Settings")]
     public int detailCountPerDetailPixel = 2;
     public int affectedTextureIndex = 0;
 

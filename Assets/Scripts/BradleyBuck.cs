@@ -6,7 +6,6 @@ public class BradleyBuck : MonoBehaviour
 {
     public GameObject player;
     public GameObject gameControllerObject;
-
     public int minimumTaskIndex;
 
     private bool collected = false;

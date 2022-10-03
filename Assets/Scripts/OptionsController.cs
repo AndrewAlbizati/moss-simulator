@@ -9,14 +9,10 @@ using System;
 public class OptionsController : MonoBehaviour
 {
     public GameObject sensitivityObject;
-    public GameObject volumeObject;
     public GameObject keybindObject;
 
     private Slider sensitivitySlider;
     private TMP_Text sensitivityText;
-
-    private Slider volumeSlider;
-    private TMP_Text volumeText;
 
     private GameObject keybindButton;
     private TMP_Text keybindLabel;
@@ -29,27 +25,20 @@ public class OptionsController : MonoBehaviour
         sensitivitySlider = sensitivityObject.transform.GetChild(1).GetComponent<Slider>();
         sensitivityText = sensitivityObject.transform.GetChild(2).GetComponent<TMP_Text>();
 
-        volumeSlider = volumeObject.transform.GetChild(1).GetComponent<Slider>();
-        volumeText = volumeObject.transform.GetChild(2).GetComponent<TMP_Text>();
-
         keybindButton = keybindObject.transform.GetChild(0).gameObject;
         keybindLabel = keybindObject.transform.GetChild(1).GetComponent<TMP_Text>();
 
         float sensitivity;
-        float volume;
-        if (PlayerPrefs.HasKey("sensitivity") && PlayerPrefs.HasKey("volume"))
+        if (PlayerPrefs.HasKey("sensitivity"))
         {
             sensitivity = PlayerPrefs.GetFloat("sensitivity");
-            volume = PlayerPrefs.GetFloat("volume");
         }
         else
         {
             sensitivity = 200f;
-            volume = 75;
         }
 
         sensitivitySlider.value = sensitivity;
-        volumeSlider.value = volume;
 
         if (PlayerPrefs.HasKey("actionKeybind"))
         {
@@ -65,7 +54,6 @@ public class OptionsController : MonoBehaviour
     void Update()
     {
         sensitivityText.SetText(Mathf.FloorToInt(sensitivitySlider.value).ToString());
-        volumeText.SetText(Mathf.FloorToInt(volumeSlider.value).ToString());
         keybindLabel.SetText(actionKeybind.ToString());
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -110,7 +98,6 @@ public class OptionsController : MonoBehaviour
     public void OnBackClick()
     {
         PlayerPrefs.SetFloat("sensitivity", sensitivitySlider.value);
-        PlayerPrefs.SetFloat("volume", volumeSlider.value);
         PlayerPrefs.SetString("actionKeybind", actionKeybind.ToString());
         SceneManager.LoadScene(PlayerPrefs.GetString("previousScene"));
     }

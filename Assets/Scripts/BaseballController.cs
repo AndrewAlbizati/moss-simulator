@@ -8,15 +8,22 @@ using UnityEngine;
 
 public class BaseballController : MonoBehaviour
 {
+    [Header("Teams Text File")]
     public TextAsset textJson;
+
+    [Header("Scoreboard GameObjects")]
     public GameObject scoreboard;
     public GameObject betboard;
     public GameObject statusPopup;
+
+    [Header("Background Music")]
     public AudioClip baseballMusic;
 
+    [Header("Message Sprites")]
     public Sprite winner;
     public Sprite loser;
 
+    [Header("Audio")]
     public AudioClip winnerAudio;
     public AudioClip loserAudio;
 

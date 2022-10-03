@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class Shop : MonoBehaviour
 {
+    [Header("GameObjects")]
     public GameObject gameControllerObject;
     public GameObject player;
     public GameObject keybindLabel;

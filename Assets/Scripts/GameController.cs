@@ -7,16 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    [Header("Action Key")]
     public KeyCode actionKey;
 
+    [Header("Canvases")]
     public GameObject labelsCanvas;
     public GameObject pauseCanvas;
     public GameObject deathCanvas;
 
+    [Header("GameObjects")]
     public GameObject player;
     public GameObject lawnMower;
     public GameObject californiaPortal;
 
+    [Header("Audio")]
     public AudioClip chaChing;
     public AudioClip taskCompleteSound;
 

@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 1038692831}
   - component: {fileID: 1038692830}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 1430321353}
   - component: {fileID: 1430321352}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RolesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 1478522337}
   - component: {fileID: 1478522336}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: NamesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 1757057130}
   - component: {fileID: 1757057131}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -8,15 +8,22 @@ using UnityEngine.SceneManagement;
 
 public class BasketballController : MonoBehaviour
 {
+    [Header("Teams Text File")]
     public TextAsset textJson;
+
+    [Header("Scoreboard GameObjects")]
     public GameObject scoreboard;
     public GameObject betboard;
     public GameObject statusPopup;
+
+    [Header("Background Music")]
     public AudioClip basketballMusic;
 
+    [Header("Team Settings")]
     public Sprite winner;
     public Sprite loser;
 
+    [Header("Audio")]
     public AudioClip winnerAudio;
     public AudioClip loserAudio;
 
