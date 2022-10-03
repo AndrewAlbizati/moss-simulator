@@ -857,7 +857,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 757051596}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: IncrementTaskIndex
+        m_MethodName: CaliforniaPortalBought
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6454,6 +6454,7 @@ MonoBehaviour:
   deathCanvas: {fileID: 939659017}
   player: {fileID: 1016430255}
   lawnMower: {fileID: 212968177}
+  californiaPortal: {fileID: 1642778362}
   chaChing: {fileID: 8300000, guid: 3129e0dad33cd43839867e9269835d1c, type: 3}
   taskCompleteSound: {fileID: 8300000, guid: efb234dbed4524913b28e1d3b8e05a1c, type: 3}
 --- !u!82 &757051597
@@ -13560,7 +13561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1642778363
 Transform:
   m_ObjectHideFlags: 0
@@ -14031,6 +14032,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screen1: {fileID: 456492678}
   screen2: {fileID: 1445838505}
+  foodShop1: {fileID: 1567887997}
+  foodShop2: {fileID: 1675372826}
+  foodShop3: {fileID: 609877139}
   decorations: {fileID: 2041423413}
   cornFarm: {fileID: 534497661}
   lawnMower: {fileID: 212968177}

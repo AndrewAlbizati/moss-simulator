@@ -20,15 +20,17 @@ public class Grass : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerPrefs.HasKey("totalGrassCount"))
+        if (PlayerPrefs.HasKey("totalGrassCount") && PlayerPrefs.HasKey("bonusThreshold"))
         {
             totalGrassCount = PlayerPrefs.GetInt("totalGrassCount");
+            bonusThreshold = PlayerPrefs.GetInt("bonusThreshold");
         }
     }
 
     private void OnDisable()
     {
         PlayerPrefs.SetInt("totalGrassCount", totalGrassCount);
+        PlayerPrefs.SetInt("bonusThreshold", bonusThreshold);
     }
 
     // Start is called before the first frame update

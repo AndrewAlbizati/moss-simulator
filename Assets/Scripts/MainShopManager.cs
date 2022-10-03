@@ -8,6 +8,12 @@ public class MainShopManager : MonoBehaviour
 {
     public GameObject screen1;
     public GameObject screen2;
+
+    public GameObject foodShop1;
+    public GameObject foodShop2;
+    public GameObject foodShop3;
+
+
     public GameObject decorations;
     public GameObject cornFarm;
     public GameObject lawnMower;
@@ -33,8 +39,18 @@ public class MainShopManager : MonoBehaviour
         screen1.SetActive(shopIndex > 0);
         screen2.SetActive(shopIndex > 0);
 
+        foodShop1.SetActive(shopIndex > 0);
+        foodShop2.SetActive(shopIndex > 0);
+        foodShop3.SetActive(shopIndex > 0);
+
         decorations.SetActive(shopIndex > 2);
         cornFarm.SetActive(shopIndex > 5);
+
+        if (shopIndex > prices.Length - 1)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
     }
 
     private void OnDisable()
@@ -55,6 +71,11 @@ public class MainShopManager : MonoBehaviour
     {
         screen1.SetActive(true);
         screen2.SetActive(true);
+
+        foodShop1.SetActive(true);
+        foodShop2.SetActive(true);
+        foodShop3.SetActive(true);
+
         ItemPurchased();
     }
 
@@ -93,6 +114,7 @@ public class MainShopManager : MonoBehaviour
     {
         if (shopIndex > prices.Length - 1)
         {
+            gameObject.SetActive(false);
             return;
         }
         gameObject.GetComponent<MeshRenderer>().sharedMaterial = materials[shopIndex];

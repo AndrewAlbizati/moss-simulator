@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 
     public GameObject player;
     public GameObject lawnMower;
+    public GameObject californiaPortal;
 
     public AudioClip chaChing;
     public AudioClip taskCompleteSound;
@@ -55,8 +56,6 @@ public class GameController : MonoBehaviour
 
         "Earn $1000BB for corn farm",
         "Buy corn farm",
-
-
 
         "Buy California portal",
         "Enter the California portal"
@@ -115,6 +114,8 @@ public class GameController : MonoBehaviour
 
         pauseCanvas.SetActive(false);
         deathCanvas.SetActive(false);
+
+        californiaPortal.SetActive(taskIndex > 15);
 
         InvokeRepeating("DepleteHunger", 1.0f, 1.0f);
     }
@@ -344,5 +345,11 @@ public class GameController : MonoBehaviour
     public void OnTitleScreenPressed()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void CaliforniaPortalBought()
+    {
+        californiaPortal.SetActive(true);
+        IncrementTaskIndex();
     }
 }
