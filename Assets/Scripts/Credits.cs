@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void TitleScreenClicked()
     {
         SceneManager.LoadScene("Menu");
