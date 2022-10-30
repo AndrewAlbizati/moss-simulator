@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/computer/Basketball.unity
     guid: 39b9e8ab12098459fb38784ef15a06f6
   - enabled: 1
+    path: Assets/Scenes/computer/Football.unity
+    guid: bc2de82e5ce61493b9159d06e1b597d7
+  - enabled: 1
     path: Assets/Scenes/California.unity
     guid: 39593d2f68c0c4b4e8cfce07c3970346
   m_configObjects: {}
