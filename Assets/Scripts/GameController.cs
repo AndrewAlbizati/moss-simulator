@@ -127,10 +127,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            AddMoney(1000);
-        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePaused();
