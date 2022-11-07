@@ -1,4 +1,4 @@
-# Bradley Simulator
+![Bradley Simulator](title.png?raw=true)
 A first-person survival game based off of my friend Bradley.
 
 
@@ -9,6 +9,5 @@ This game takes place in Columbus, Ohio and involved the main playing trying to 
 First download the installer for the latest version, then follow the instructions in the install wizard
 
 # Platforms
-Windows
-macOS
-Linux
+- Windows
+- macOS
