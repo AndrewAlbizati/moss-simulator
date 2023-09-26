@@ -34,10 +34,11 @@ First download the installer for the latest version, then follow the instruction
 # Development
 For this project, I used Unity because of its ease of use and that fact that it integrates nicely with C#. To view all of the C# scripts, go to Assets -> Scripts.
 
-The first part of this game I developed was the movement controls. Then I reached an obstacle when trying to create the world generation. My problem was that I wanted the grass and trees to respawn freshly after being cut.
+The first part of this game I developed was the movement controls. Then I reached an obstacle when trying to create the world generation. My problem was that I wanted the grass and trees to respawn freshly after being cut. Issues like this helped me become proficient in C# and were a fun challenge.
 
+I wanted the game to work seamlessly on any computer and not put any burden on the user so I created an installer for Windows and macOS. I also rigorously playtested the game to make sure there weren't any major bugs in the game.
 
-
+The entire process taught me about the software development cycle as previously I had never worked on a project this large. I'm very glad I was successfully in releasing my game and I'm hoping to share it with more people.
 
 # Screenshots
 ![Screenshot 1](https://media.discordapp.net/attachments/316017964061294602/1156031298473820310/Screenshot_2023-09-25_at_5.50.47_PM.png?ex=65137d8b&is=65122c0b&hm=167481cc65c3d5120ace474a03a0e1b921158ceee40f8262dcc22cd6dec94f68&=&width=1410&height=916)
