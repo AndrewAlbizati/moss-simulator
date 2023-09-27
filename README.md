@@ -10,7 +10,7 @@ In 2022 Brad flew down to San Diego and I got to see him in-person for the first
 
 In 2023 I got the chance to go to Columbus to see him and his family. I had an amazing experience spending time in the city. 
 
-I decided to make this game because I wanted to give him a fun birthday surprise. I started development in July and put in many hours into developing this game inspired by my friend. It's safe to say that he's very happy with the end result.
+I decided to make this game because I wanted to give him a fun birthday surprise. I started development in July and I put in many hours into developing this game inspired by my friend. It's safe to say that he's very happy with the end result.
 
 
 # Gameplay
